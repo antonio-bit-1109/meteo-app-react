@@ -5,14 +5,10 @@ import MyNavBarComponent from "./components/MyNavBarComponent";
 import { useEffect, useState } from "react";
 import MainPage from "./components/MainPage";
 import DetailsSIngleCity from "./components/DetailsSIngleCity";
+import NotFoundComponent from "./components/NotFoundComponent";
 
 const App = () => {
     const [cityname, setCityname] = useState("");
-    /*     const [coordinates, setCoordinates] = useState(null);
-    console.log("CORD", coordinates);
-
-    const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
-    console.log("DATI METEO CITTA", datiMeteoCitta); */
 
     const handleInputValue = (event) => {
         setCityname(event.target.value);
@@ -21,14 +17,6 @@ const App = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
     };
-
-    useEffect(() => {
-        if (cityname !== "") {
-            setTimeout(() => {
-                setCityname("");
-            }, 15000);
-        }
-    }, [cityname]);
 
     return (
         <div className="App">
@@ -48,12 +36,20 @@ const App = () => {
                         }
                     />
                     <Route
-                        path="/DettagliCitta"
+                        path="/DettagliCitta/:IdData"
                         element={
                             <>
                                 {" "}
                                 <MyNavBarComponent />
                                 <DetailsSIngleCity cityname={cityname} />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="*"
+                        element={
+                            <>
+                                <MyNavBarComponent /> <NotFoundComponent />{" "}
                             </>
                         }
                     />
