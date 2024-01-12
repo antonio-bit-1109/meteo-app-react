@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Carousel, CarouselItem, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { format } from "date-fns";
+import InputComponent from "./InputComponent";
 
 const DetailsSIngleCity = (props) => {
     const { cityname } = props;
@@ -146,6 +147,13 @@ const DetailsSIngleCity = (props) => {
                 >
                     {datiMeteoCitta && (
                         <Container>
+                            <Row className="justify-content-center">
+                                <Col sm={12} md={8} lg={6} xl={6} xxl={6}>
+                                    <div className="my-4">
+                                        <InputComponent />
+                                    </div>
+                                </Col>
+                            </Row>
                             <Row className="justify-content-center">
                                 <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
                                     <div className="m-3">

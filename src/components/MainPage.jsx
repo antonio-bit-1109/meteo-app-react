@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import InputComponent from "./InputComponent";
 
 const MainPage = (props) => {
     const { handleInputValue, cityname } = props;

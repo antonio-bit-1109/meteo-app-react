@@ -1,30 +1,27 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { Form, Link } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const InputComponent = (props) => {
-    const { handleInputValue, cityname } = props;
+    /*   const {  } = props; */
 
     return (
-        <div>
-            {" "}
-            <Form className="d-flex">
+        <>
+            <InputGroup className="mb-3">
+                <InputGroup.Text id="basic-addon1">che città stai cercando ?</InputGroup.Text>
                 <Form.Control
-                    type="search"
-                    placeholder="Cerca una città..."
-                    className="me-2"
-                    aria-label="Search"
-                    onChange={handleInputValue}
-                    value={cityname}
-                />
+                    placeholder="Username"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                ></Form.Control>
 
-                <Link to={`/DettagliCitta/${cityname}`}>
-                    <Button type="button" variant="outline-success">
-                        Search
-                    </Button>
-                </Link>
-            </Form>
-        </div>
+                <Button variant="dark" className="text-light">
+                    {" "}
+                    cerca{" "}
+                </Button>
+            </InputGroup>
+        </>
     );
 };
 
