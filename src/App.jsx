@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyNavBarComponent from "./components/MyNavBarComponent";
 import { useEffect, useState } from "react";
+import MainPage from "./components/MainPage";
 
 const App = () => {
     const [cityname, setCityname] = useState("roma");
@@ -50,7 +51,14 @@ const App = () => {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<MyNavBarComponent />} />
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                <MyNavBarComponent /> <MainPage />
+                            </>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </div>
