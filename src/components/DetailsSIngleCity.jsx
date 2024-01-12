@@ -6,13 +6,15 @@ const DetailsSIngleCity = (props) => {
     const { cityname } = props;
     console.log("DATI METEO CITTA", cityname);
 
-    /* const [coordinates, setCoordinates] = useState({ lat: null, lon: null }); */
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
     const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
+    const [cityImage, setcityImage] = useState(null);
+    console.log("IMMAGINE", cityImage);
 
     useEffect(() => {
         FetchCityCoordinates(cityname);
+        fetchAnImage(cityname);
     }, [cityname]);
 
     useEffect(() => {
@@ -94,9 +96,45 @@ const DetailsSIngleCity = (props) => {
             .catch((err) => console.error(err));
     };
 
+    /* 3° fetch per prendere un img da metter in sottofondo alle card  */
+    const fetchAnImage = (value) => {
+        const options = {
+            method: "GET",
+            headers: {
+                Authorization: "7Ye7PHnNDdVmd43T5cthTwaF0I2AipmjtizxjFtVcXnzQIgCqJYlTLXP",
+                "Content-type": "application/json",
+            },
+        };
+
+        fetch(`https://api.pexels.com/v1/search?query=${value}`, options)
+            .then((response) => {
+                console.log(response);
+                if (!response.ok) {
+                    if (response.status > 400 && response.status < 500) {
+                        if (response.status === 429) {
+                            throw new Error("429 INFAME, PRENDI UN Pò DI VITAMINE ");
+                        } else {
+                            throw new Error("STAI CAPPELLANDO, RIGUARDA QUELLO CHE HAI SCRITTO");
+                        }
+                    }
+                    if (response.status > 500 && response.status < 600) {
+                        throw new Error("SERVER SPOMPATO, NON FUNZIA??");
+                    }
+                } else {
+                    return response.json();
+                }
+            })
+            .then((data) => {
+                setcityImage(data.photos[0].src.landscape);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    };
+
     return (
         <>
-            {datiMeteoCitta && (
+            {datiMeteoCitta && cityImage && (
                 <Container>
                     <Row className="justify-content-center">
                         <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
@@ -116,17 +154,17 @@ const DetailsSIngleCity = (props) => {
                         <Carousel>
                             {datiMeteoCitta.list.map((objData) => (
                                 <CarouselItem key={objData.dt}>
-                                    <Col>
-                                        <Card>
+                                    <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
+                                        <Card className="bg-image-card">
                                             <Card.Body>
                                                 <h2> Orario: {objData.dt_txt}</h2>
                                                 <Card.Title>{objData.weather[0].main}</Card.Title>
                                                 <Card.Text>{objData.weather[0].description}</Card.Text>
+
                                                 <Card.Img
                                                     variant="top"
                                                     src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
                                                     alt="immagine meteo"
-                                                    style={{ width: "15rem" }}
                                                 />
                                                 <div> temperatura : {objData.main.temp} C°</div>
                                                 <div>Percepita: {objData.main.feels_like} C°</div>
