@@ -92,8 +92,20 @@ const DetailsSIngleCity = (props) => {
             .then((meteoCityDatas) => {
                 console.log(meteoCityDatas);
                 setDatiMeteoCitta(meteoCityDatas);
+                transformDataFormat(meteoCityDatas);
             })
             .catch((err) => console.error(err));
+    };
+
+    const transformDataFormat = (object) => {
+        const megalista = object.list;
+        for (let i = 0; i < megalista.length; i++) {
+            const singleListObj = megalista[i];
+            let dataEuropea = singleListObj.dt_txt;
+
+            const Datas = new Date();
+            const giorno = Datas;
+        }
     };
 
     /* 3° fetch per prendere un img da metter in sottofondo alle card  */
