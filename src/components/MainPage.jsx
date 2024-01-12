@@ -21,9 +21,11 @@ const MainPage = (props) => {
                                     value={cityname}
                                 />
 
-                                <Button type="submit" variant="outline-success">
-                                    Search
-                                </Button>
+                                <Link to={"/DettagliCitta"}>
+                                    <Button type="submit" variant="outline-success">
+                                        Search
+                                    </Button>
+                                </Link>
                             </Form>
                         </div>
                     </Col>
