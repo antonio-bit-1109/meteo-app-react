@@ -10,12 +10,12 @@ const DetailsSIngleCity = (props) => {
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
     const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
-    /*     const [cityImage, setcityImage] = useState(null);
-    console.log("IMMAGINE", cityImage); */
+    const [cityImage, setcityImage] = useState(null);
+    console.log("IMMAGINE", cityImage);
 
     useEffect(() => {
         FetchCityCoordinates(cityname);
-        /*  fetchAnImage(cityname); */
+        fetchAnImage(cityname);
     }, [cityname]);
 
     useEffect(() => {
@@ -93,13 +93,12 @@ const DetailsSIngleCity = (props) => {
             .then((meteoCityDatas) => {
                 console.log(meteoCityDatas);
                 setDatiMeteoCitta(meteoCityDatas);
-                /*  transformDataFormat(meteoCityDatas); */
             })
             .catch((err) => console.error(err));
     };
 
     /* 3° fetch per prendere un img da metter in sottofondo alle card  */
-    /*     const fetchAnImage = (value) => {
+    const fetchAnImage = (value) => {
         const options = {
             method: "GET",
             headers: {
@@ -132,54 +131,69 @@ const DetailsSIngleCity = (props) => {
             .catch((err) => {
                 console.error(err);
             });
-    }; */
+    };
 
     return (
-        <div style={{ minHeight: "95vh" }} className="sfondo">
-            {datiMeteoCitta && (
-                /* cityImage && */ <Container>
-                    <Row className="justify-content-center">
-                        <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
-                            <div className="m-5">
-                                <div>
-                                    <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
-                                    <span className="fs-3">{datiMeteoCitta.city.country}</span>
-                                </div>
-                                <div className="fs-5">latitudine: {datiMeteoCitta.city.coord.lat} , </div>
-                                <div className="fs-5">longitudine: {datiMeteoCitta.city.coord.lon} </div>
-                                <div className="fs-5">popolazione : {datiMeteoCitta.city.population} abitanti</div>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        {datiMeteoCitta.list.map((objData) => (
-                            <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
-                                <Card className="m-4">
-                                    <Card.Body>
-                                        <h2> Orario: {format(new Date(objData.dt_txt), "dd/MMMM/yyyy HH:mm")}</h2>
-                                        <Card.Title>{objData.weather[0].main}</Card.Title>
-                                        <Card.Text>{objData.weather[0].description}</Card.Text>
+        <>
+            {
+                <div
+                    style={{
+                        minHeight: "95vh",
+                        backgroundImage: cityImage ? `url(${cityImage})` : "none",
+                    }}
+                    className="sfondo"
+                >
+                    {datiMeteoCitta && (
+                        <Container>
+                            <Row className="justify-content-center">
+                                <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
+                                    <div className="m-5">
+                                        <div>
+                                            <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
+                                            <span className="fs-3">{datiMeteoCitta.city.country}</span>
+                                        </div>
+                                        <div className="fs-5">latitudine: {datiMeteoCitta.city.coord.lat} , </div>
+                                        <div className="fs-5">longitudine: {datiMeteoCitta.city.coord.lon} </div>
+                                        <div className="fs-5">
+                                            popolazione : {datiMeteoCitta.city.population} abitanti
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+                            <Row>
+                                {datiMeteoCitta.list.map((objData) => (
+                                    <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
+                                        <Card className="m-4">
+                                            <Card.Body>
+                                                <h2>
+                                                    {" "}
+                                                    Orario: {format(new Date(objData.dt_txt), "dd/MMMM/yyyy HH:mm")}
+                                                </h2>
+                                                <Card.Title>{objData.weather[0].main}</Card.Title>
+                                                <Card.Text>{objData.weather[0].description}</Card.Text>
 
-                                        <Card.Img
-                                            variant="top"
-                                            src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
-                                            alt="immagine meteo"
-                                            style={{ width: "50%" }}
-                                        />
-                                        <h5> temperatura : {objData.main.temp} C°</h5>
-                                        <div>Percepita: {objData.main.feels_like} C°</div>
-                                        <div>Temp.min: {objData.main.temp_min} C°</div>
-                                        <div>Temp.Max: {objData.main.temp_max} C°</div>
-                                        <div>Umidità: {objData.main.humidity} %</div>
-                                        <div> nuvolosità: {objData.clouds.all}%</div>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
-                </Container>
-            )}
-        </div>
+                                                <Card.Img
+                                                    variant="top"
+                                                    src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
+                                                    alt="immagine meteo"
+                                                    style={{ width: "30%" }}
+                                                />
+                                                <h5> temperatura : {objData.main.temp} C°</h5>
+                                                <div>Percepita: {objData.main.feels_like} C°</div>
+                                                <div>Temp.min: {objData.main.temp_min} C°</div>
+                                                <div>Temp.Max: {objData.main.temp_max} C°</div>
+                                                <div>Umidità: {objData.main.humidity} %</div>
+                                                <div> nuvolosità: {objData.clouds.all}%</div>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </Container>
+                    )}
+                </div>
+            }
+        </>
     );
 };
 

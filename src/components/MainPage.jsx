@@ -3,7 +3,7 @@ import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const MainPage = (props) => {
-    const { handleInputValue, handleSubmit, cityname } = props;
+    const { handleInputValue, cityname } = props;
     return (
         <div className="background-image">
             <Container>
@@ -14,7 +14,7 @@ const MainPage = (props) => {
                     <Col sm={12} md={8} lg={6} xl={5} xxl={5}>
                         {" "}
                         <div className="my-5">
-                            <Form onSubmit={handleSubmit} className="d-flex">
+                            <Form className="d-flex">
                                 <Form.Control
                                     type="search"
                                     placeholder="Cerca una città..."

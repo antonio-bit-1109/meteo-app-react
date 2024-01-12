@@ -14,10 +14,6 @@ const App = () => {
         setCityname(event.target.value);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
-
     return (
         <div className="App">
             <BrowserRouter>
@@ -27,11 +23,7 @@ const App = () => {
                         element={
                             <>
                                 <MyNavBarComponent />
-                                <MainPage
-                                    handleInputValue={handleInputValue}
-                                    handleSubmit={handleSubmit}
-                                    cityname={cityname}
-                                />
+                                <MainPage handleInputValue={handleInputValue} cityname={cityname} />
                             </>
                         }
                     />
