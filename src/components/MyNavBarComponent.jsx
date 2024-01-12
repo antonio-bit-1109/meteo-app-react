@@ -44,9 +44,11 @@ const MyNavBarComponent = (props) => {
                                 onChange={handleInputValue}
                                 value={cityname}
                             />
-                            <Button type="button" onClick={handleSubmit} variant="outline-success">
-                                Search
-                            </Button>
+                            <Link to={"/DettagliCitta"}>
+                                <Button type="button" onClick={handleSubmit} variant="outline-success">
+                                    Search
+                                </Button>
+                            </Link>
                         </Form>
                     </Navbar.Collapse>
                 </Container>
