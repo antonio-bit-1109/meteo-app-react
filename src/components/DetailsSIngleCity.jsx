@@ -146,7 +146,7 @@ const DetailsSIngleCity = (props) => {
     };
 
     return (
-        <div className="sfondo">
+        <div style={{ minHeight: "95vh" }} className="sfondo">
             {datiMeteoCitta && cityImage && (
                 <Container>
                     <Row className="justify-content-center">
