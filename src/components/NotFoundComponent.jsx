@@ -17,6 +17,7 @@ const NotFoundComponent = () => {
                 <Col>
                     <div className="d-flex flex-column justify-content-center align-items-center">
                         <h3 className="display-3">Ops, qui non c'è nulla!</h3>
+                        <h5> Hai cliccato qualcosa di sbagliato</h5>
                         <Link to={"/"} className="btn btn-primary">
                             Torna in HomePage{" "}
                         </Link>
