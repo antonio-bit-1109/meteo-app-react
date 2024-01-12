@@ -22,6 +22,14 @@ const App = () => {
         event.preventDefault();
     };
 
+    useEffect(() => {
+        if (cityname !== "") {
+            setTimeout(() => {
+                setCityname("");
+            }, 15000);
+        }
+    }, [cityname]);
+
     return (
         <div className="App">
             <BrowserRouter>
