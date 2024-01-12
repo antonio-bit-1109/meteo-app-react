@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Carousel, CarouselItem, Col, Container, Row } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 
 const DetailsSIngleCity = (props) => {
     const { cityname } = props;
@@ -65,7 +67,7 @@ const DetailsSIngleCity = (props) => {
             headers: {},
         };
         const APIKey = "acb08f24ca1c3d1d35561583c8e68e21";
-        const getCityInfos = `https://api.openweathermap.org/data/2.5/weather?lat=${value0}&lon=${value1}&appid=${APIKey}`;
+        const getCityInfos = `https://api.openweathermap.org/data/2.5/forecast?lat=${value0}&lon=${value1}&appid=${APIKey}&units=metric`;
 
         fetch(getCityInfos, options)
             .then((responseMeteodata) => {
@@ -92,7 +94,61 @@ const DetailsSIngleCity = (props) => {
             .catch((err) => console.error(err));
     };
 
-    return <div>DetailsSIngleCity</div>;
+    return (
+        <>
+            {datiMeteoCitta && (
+                <Container>
+                    <Row className="justify-content-center">
+                        <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
+                            <div className="m-5">
+                                <div>
+                                    {datiMeteoCitta.city.name} , {datiMeteoCitta.city.country}
+                                </div>
+                                <div>
+                                    coordinate: {datiMeteoCitta.city.coord.lat} , {datiMeteoCitta.city.coord.lon} ,{" "}
+                                </div>
+                                <div>popolazione : {datiMeteoCitta.city.population} abitanti</div>
+                                <div></div>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Carousel>
+                            {datiMeteoCitta.list.map((objData) => (
+                                <CarouselItem key={objData.dt}>
+                                    <Col>
+                                        <Card>
+                                            <Card.Body>
+                                                <h2> Orario: {objData.dt_txt}</h2>
+                                                <Card.Title>{objData.weather[0].main}</Card.Title>
+                                                <Card.Text>{objData.weather[0].description}</Card.Text>
+                                                <Card.Img
+                                                    variant="top"
+                                                    src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
+                                                    alt="immagine meteo"
+                                                    style={{ width: "15rem" }}
+                                                />
+                                                <div> temperatura : {objData.main.temp} C°</div>
+                                                <div>Percepita: {objData.main.feels_like} C°</div>
+                                                <div>Temp.min: {objData.main.temp_min} C°</div>
+                                                <div>Temp.Max: {objData.main.temp_max} C°</div>
+                                                <div>Umidità: {objData.main.humidity} %</div>
+                                                <div> nuvolosità: {objData.clouds.all}%</div>
+                                                {/* <div>{objData.}</div>
+                                        <div>{objData.}</div>
+                                        <div>{objData.}</div>
+                                        <div>{objData.}</div>  */}
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                </CarouselItem>
+                            ))}
+                        </Carousel>
+                    </Row>
+                </Container>
+            )}
+        </>
+    );
 };
 
 export default DetailsSIngleCity;
