@@ -4,3 +4,11 @@
     background-position: center center;
     background-size: cover;
 }
+
+.sfondo {
+    background: rgb(136, 34, 195);
+    background: -moz-linear-gradient(0deg, rgba(136, 34, 195, 1) 0%, rgba(45, 241, 253, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(136, 34, 195, 1) 0%, rgba(45, 241, 253, 1) 100%);
+    background: linear-gradient(0deg, rgba(136, 34, 195, 1) 0%, rgba(45, 241, 253, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8822c3",endColorstr="#2df1fd",GradientType=1);
+}

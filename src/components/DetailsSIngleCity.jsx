@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Carousel, CarouselItem, Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import { format } from "date-fns";
 
 const DetailsSIngleCity = (props) => {
     const { cityname } = props;
@@ -92,12 +93,12 @@ const DetailsSIngleCity = (props) => {
             .then((meteoCityDatas) => {
                 console.log(meteoCityDatas);
                 setDatiMeteoCitta(meteoCityDatas);
-                transformDataFormat(meteoCityDatas);
+                /*  transformDataFormat(meteoCityDatas); */
             })
             .catch((err) => console.error(err));
     };
 
-    const transformDataFormat = (object) => {
+    /*     const transformDataFormat = (object) => {
         const megalista = object.list;
         for (let i = 0; i < megalista.length; i++) {
             const singleListObj = megalista[i];
@@ -106,7 +107,7 @@ const DetailsSIngleCity = (props) => {
             const Datas = new Date();
             const giorno = Datas;
         }
-    };
+    }; */
 
     /* 3° fetch per prendere un img da metter in sottofondo alle card  */
     const fetchAnImage = (value) => {
@@ -145,7 +146,7 @@ const DetailsSIngleCity = (props) => {
     };
 
     return (
-        <>
+        <div className="sfondo">
             {datiMeteoCitta && cityImage && (
                 <Container>
                     <Row className="justify-content-center">
@@ -168,7 +169,10 @@ const DetailsSIngleCity = (props) => {
                                     <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
                                         <Card style={{ backgroundImage: `url(${cityImage})` }}>
                                             <Card.Body>
-                                                <h2> Orario: {objData.dt_txt}</h2>
+                                                <h2>
+                                                    {" "}
+                                                    Orario: {format(new Date(objData.dt_txt), "dd/MMMM/yyyy HH:mm")}
+                                                </h2>
                                                 <Card.Title>{objData.weather[0].main}</Card.Title>
                                                 <Card.Text>{objData.weather[0].description}</Card.Text>
 
@@ -193,7 +197,7 @@ const DetailsSIngleCity = (props) => {
                     </Row>
                 </Container>
             )}
-        </>
+        </div>
     );
 };
 
