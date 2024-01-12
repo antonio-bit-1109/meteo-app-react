@@ -7,7 +7,7 @@ import MainPage from "./components/MainPage";
 import DetailsSIngleCity from "./components/DetailsSIngleCity";
 
 const App = () => {
-    const [cityname, setCityname] = useState(null);
+    const [cityname, setCityname] = useState("");
     const [coordinates, setCoordinates] = useState(null);
     console.log("CORD", coordinates);
 
@@ -20,7 +20,7 @@ const App = () => {
         FetchCityCoordinates(cityname);
     };
 
-    /* 1 FETCH VERSO APP GEOCODER */
+    /* 1 FETCH VERSO APP GEOCODER GET DELLE COORDINATES*/
     const FetchCityCoordinates = (value) => {
         const options = {
             method: "GET",
@@ -100,16 +100,16 @@ const App = () => {
                         path="/"
                         element={
                             <>
-                                <MyNavBarComponent
+                                <MyNavBarComponent />
+                                <MainPage
                                     handleInputValue={handleInputValue}
                                     handleSubmit={handleSubmit}
                                     cityname={cityname}
                                 />
-                                <MainPage />
                             </>
                         }
                     />
-                    <Route
+                    {/*  <Route
                         path="/DettagliCitta"
                         element={
                             <>
@@ -122,7 +122,7 @@ const App = () => {
                                 <DetailsSIngleCity />
                             </>
                         }
-                    />
+                    /> */}
                 </Routes>
             </BrowserRouter>
         </div>

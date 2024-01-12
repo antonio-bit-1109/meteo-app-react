@@ -1,7 +1,9 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const MainPage = () => {
+const MainPage = (props) => {
+    const { handleInputValue, handleSubmit, cityname } = props;
     return (
         <>
             <Container>
@@ -9,8 +11,20 @@ const MainPage = () => {
                     <Col>
                         {" "}
                         <div className="my-5">
-                            <h3>benvenuto in App meteo</h3>
-                            <p>prova prova </p>
+                            <Form onSubmit={handleSubmit} className="d-flex">
+                                <Form.Control
+                                    type="search"
+                                    placeholder="Cerca una città..."
+                                    className="me-2"
+                                    aria-label="Search"
+                                    onChange={handleInputValue}
+                                    value={cityname}
+                                />
+
+                                <Button type="submit" variant="outline-success">
+                                    Search
+                                </Button>
+                            </Form>
                         </div>
                     </Col>
                 </Row>
