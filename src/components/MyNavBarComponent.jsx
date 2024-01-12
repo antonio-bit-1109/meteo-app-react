@@ -22,7 +22,7 @@ const MyNavBarComponent = () => {
                             <Link
                                 style={{ color: location.pathname === "/DettagliCitta" && "red" }}
                                 className="nav-link"
-                                to={"/"}
+                                to={"/DettagliCitta"}
                             >
                                 Dettagli
                             </Link>

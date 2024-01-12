@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import MyNavBarComponent from "./components/MyNavBarComponent";
 import { useEffect, useState } from "react";
 import MainPage from "./components/MainPage";
@@ -12,6 +12,7 @@ const App = () => {
     console.log("CORD", coordinates);
 
     const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
+    console.log("DATI METEO CITTA", datiMeteoCitta);
 
     const handleInputValue = (event) => {
         setCityname(event.target.value);
