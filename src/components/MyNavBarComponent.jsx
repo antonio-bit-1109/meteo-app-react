@@ -2,8 +2,12 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
 const MyNavBarComponent = () => {
+    const location = useLocation();
+
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -12,8 +16,16 @@ const MyNavBarComponent = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home">Home</Nav.Link>
-                            <Nav.Link href="#link">Link</Nav.Link>
+                            <Link style={{ color: location.pathname === "/" && "red" }} className="nav-link" to={"/"}>
+                                HomePage
+                            </Link>
+                            <Link
+                                style={{ color: location.pathname === "/DettagliCitta" && "red" }}
+                                className="nav-link"
+                                to={"/"}
+                            >
+                                Dettagli
+                            </Link>
                             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

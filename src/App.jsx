@@ -11,6 +11,8 @@ const App = () => {
     const [coordinates, setCoordinates] = useState(null);
     console.log("CORD", coordinates);
 
+    const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
+
     const handleInputValue = (event) => {
         setCityname(event.target.value);
     };
@@ -87,6 +89,7 @@ const App = () => {
                 })
                 .then((meteoCityDatas) => {
                     console.log(meteoCityDatas);
+                    setDatiMeteoCitta(meteoCityDatas);
                 })
                 .catch((err) => console.error(err));
         }
@@ -109,20 +112,16 @@ const App = () => {
                             </>
                         }
                     />
-                    {/*  <Route
+                    <Route
                         path="/DettagliCitta"
                         element={
                             <>
                                 {" "}
-                                <MyNavBarComponent
-                                    handleInputValue={handleInputValue}
-                                    handleSubmit={handleSubmit}
-                                    cityname={cityname}
-                                />
-                                <DetailsSIngleCity />
+                                <MyNavBarComponent />
+                                <DetailsSIngleCity datiMeteoCitta={datiMeteoCitta} />
                             </>
                         }
-                    /> */}
+                    />
                 </Routes>
             </BrowserRouter>
         </div>
