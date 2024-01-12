@@ -7,7 +7,7 @@ import MainPage from "./components/MainPage";
 
 const App = () => {
     const [cityname, setCityname] = useState("roma");
-    const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
+    const [coordinates, setCoordinates] = useState(null);
     console.log("CORD", coordinates);
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const App = () => {
             })
             .then((data) => {
                 console.log(data);
-                setCoordinates({ lat: data[0].lat, lon: data[0].lon });
+                setCoordinates(data); /* prendo tute le coordinates */
             })
             .catch((err) => console.error(err));
     };
