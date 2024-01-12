@@ -5,7 +5,9 @@ import MyNavBarComponent from "./components/MyNavBarComponent";
 import { useEffect, useState } from "react";
 
 const App = () => {
-    const [cityname, setCityname] = useState("Roma");
+    const [cityname, setCityname] = useState("roma");
+    const [coordinates, setCoordinates] = useState({ lat: null, lon: null });
+    console.log("CORD", coordinates);
 
     useEffect(() => {
         FetchGetLonLat();
@@ -39,6 +41,7 @@ const App = () => {
             })
             .then((data) => {
                 console.log(data);
+                setCoordinates({ lat: data[0].lat, lon: data[0].lon });
             })
             .catch((err) => console.error(err));
     };
