@@ -163,11 +163,11 @@ const DetailsSIngleCity = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Carousel fade>
+                        <Carousel fade indicators={false}>
                             {datiMeteoCitta.list.map((objData) => (
                                 <CarouselItem key={objData.dt}>
                                     <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
-                                        <Card style={{ backgroundImage: `url(${cityImage})` }}>
+                                        <Card /* style={{ backgroundImage: `url(${cityImage})` }} */>
                                             <Card.Body>
                                                 <h2>
                                                     {" "}
