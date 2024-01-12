@@ -10,12 +10,12 @@ const DetailsSIngleCity = (props) => {
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
     const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
-    const [cityImage, setcityImage] = useState(null);
-    console.log("IMMAGINE", cityImage);
+    // const [cityImage, setcityImage] = useState(null);
+    // console.log("IMMAGINE", cityImage);
 
     useEffect(() => {
         FetchCityCoordinates(cityname);
-        fetchAnImage(cityname);
+        // fetchAnImage(cityname);
     }, [cityname]);
 
     useEffect(() => {
@@ -98,40 +98,41 @@ const DetailsSIngleCity = (props) => {
     };
 
     /* 3° fetch per prendere un img da metter in sottofondo alle card  */
-    const fetchAnImage = (value) => {
-        const options = {
-            method: "GET",
-            headers: {
-                Authorization: "7Ye7PHnNDdVmd43T5cthTwaF0I2AipmjtizxjFtVcXnzQIgCqJYlTLXP",
-                "Content-type": "application/json",
-            },
-        };
+    // const fetchAnImage = (value) => {
+    //     const options = {
+    //         method: "GET",
+    //         headers: {
+    //             Authorization: "7Ye7PHnNDdVmd43T5cthTwaF0I2AipmjtizxjFtVcXnzQIgCqJYlTLXP",
+    //             "Content-type": "application/json",
+    //         },
+    //     };
 
-        fetch(`https://api.pexels.com/v1/search?query=${value}`, options)
-            .then((response) => {
-                console.log(response);
-                if (!response.ok) {
-                    if (response.status > 400 && response.status < 500) {
-                        if (response.status === 429) {
-                            throw new Error("429 INFAME, PRENDI UN Pò DI VITAMINE ");
-                        } else {
-                            throw new Error("STAI CAPPELLANDO, RIGUARDA QUELLO CHE HAI SCRITTO");
-                        }
-                    }
-                    if (response.status > 500 && response.status < 600) {
-                        throw new Error("SERVER SPOMPATO, NON FUNZIA??");
-                    }
-                } else {
-                    return response.json();
-                }
-            })
-            .then((data) => {
-                setcityImage(data.photos[0].src.landscape);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    };
+    //     fetch(`https://api.pexels.com/v1/search?query=${value}`, options)
+    //         .then((response) => {
+    //             console.log(response);
+    //             if (!response.ok) {
+    //                 if (response.status > 400 && response.status < 500) {
+    //                     if (response.status === 429) {
+    //                         throw new Error("429 INFAME, PRENDI UN Pò DI VITAMINE ");
+    //                     } else {
+    //                         throw new Error("STAI CAPPELLANDO, RIGUARDA QUELLO CHE HAI SCRITTO");
+    //                     }
+    //                 }
+    //                 if (response.status > 500 && response.status < 600) {
+    //                     throw new Error("SERVER SPOMPATO, NON FUNZIA??");
+    //                 }
+    //             } else {
+    //                 return response.json();
+    //             }
+    //         })
+    //         .then((data) => {
+    //             console.log("IMMAGINE", data);
+    //             setcityImage(data.photos[0].src.large);
+    //         })
+    //         .catch((err) => {
+    //             console.error(err);
+    //         });
+    // };
 
     return (
         <>
@@ -139,7 +140,7 @@ const DetailsSIngleCity = (props) => {
                 <div
                     style={{
                         minHeight: "95vh",
-                        backgroundImage: cityImage ? `url(${cityImage})` : "none",
+                        // backgroundImage: cityImage ? `url(${cityImage})` : "none",
                     }}
                     className="sfondo"
                 >
@@ -147,7 +148,7 @@ const DetailsSIngleCity = (props) => {
                         <Container>
                             <Row className="justify-content-center">
                                 <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
-                                    <div className="m-5">
+                                    <div className="m-3">
                                         <div>
                                             <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
                                             <span className="fs-3">{datiMeteoCitta.city.country}</span>
