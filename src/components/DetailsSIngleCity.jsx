@@ -163,7 +163,7 @@ const DetailsSIngleCity = (props) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Carousel>
+                        <Carousel fade>
                             {datiMeteoCitta.list.map((objData) => (
                                 <CarouselItem key={objData.dt}>
                                     <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
