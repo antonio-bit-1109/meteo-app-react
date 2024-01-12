@@ -140,13 +140,12 @@ const DetailsSIngleCity = (props) => {
                         <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
                             <div className="m-5">
                                 <div>
-                                    {datiMeteoCitta.city.name} , {datiMeteoCitta.city.country}
+                                    <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
+                                    <span className="fs-3">{datiMeteoCitta.city.country}</span>
                                 </div>
-                                <div>
-                                    coordinate: {datiMeteoCitta.city.coord.lat} , {datiMeteoCitta.city.coord.lon} ,{" "}
-                                </div>
-                                <div>popolazione : {datiMeteoCitta.city.population} abitanti</div>
-                                <div></div>
+                                <div className="fs-5">latitudine: {datiMeteoCitta.city.coord.lat} , </div>
+                                <div className="fs-5">longitudine: {datiMeteoCitta.city.coord.lon} </div>
+                                <div className="fs-5">popolazione : {datiMeteoCitta.city.population} abitanti</div>
                             </div>
                         </Col>
                     </Row>
@@ -155,7 +154,7 @@ const DetailsSIngleCity = (props) => {
                             {datiMeteoCitta.list.map((objData) => (
                                 <CarouselItem key={objData.dt}>
                                     <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
-                                        <Card className="bg-image-card">
+                                        <Card style={{ backgroundImage: `url(${cityImage})` }}>
                                             <Card.Body>
                                                 <h2> Orario: {objData.dt_txt}</h2>
                                                 <Card.Title>{objData.weather[0].main}</Card.Title>
@@ -165,17 +164,14 @@ const DetailsSIngleCity = (props) => {
                                                     variant="top"
                                                     src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
                                                     alt="immagine meteo"
+                                                    style={{ width: "50%" }}
                                                 />
-                                                <div> temperatura : {objData.main.temp} C°</div>
+                                                <h5> temperatura : {objData.main.temp} C°</h5>
                                                 <div>Percepita: {objData.main.feels_like} C°</div>
                                                 <div>Temp.min: {objData.main.temp_min} C°</div>
                                                 <div>Temp.Max: {objData.main.temp_max} C°</div>
                                                 <div>Umidità: {objData.main.humidity} %</div>
                                                 <div> nuvolosità: {objData.clouds.all}%</div>
-                                                {/* <div>{objData.}</div>
-                                        <div>{objData.}</div>
-                                        <div>{objData.}</div>
-                                        <div>{objData.}</div>  */}
                                             </Card.Body>
                                         </Card>
                                     </Col>
