@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { format } from "date-fns";
 import InputComponent from "./InputComponent";
+import { it } from "date-fns/locale";
 
 const DetailsSIngleCity = (props) => {
     const { cityname } = props;
@@ -131,6 +132,7 @@ const DetailsSIngleCity = (props) => {
                                 </Col>
                             </Row>
                             <Row className="justify-content-center">
+                                {/* info generali sul meteo della città */}
                                 <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
                                     <div className="m-3">
                                         <div>
@@ -145,12 +147,21 @@ const DetailsSIngleCity = (props) => {
                                     </div>
                                 </Col>
                             </Row>
-                            <Row>
-                                {datiMeteoCitta.list.map((objData) => (
-                                    <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
+                            <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
+                                {/* primi 3 array con card grandi  */}
+                                {datiMeteoCitta.list.slice(0, 3).map((objData) => (
+                                    <Col
+                                        key={objData.dt}
+                                        className="mx-auto" /*  sm={12} md={8} lg={6} xl={4} xxl={4} */
+                                    >
                                         <Card className="m-4">
                                             <Card.Body>
-                                                <h2> {format(new Date(objData.dt_txt), "dd/MMMM/yyyy HH:mm")}</h2>
+                                                <h2>
+                                                    {" "}
+                                                    {format(new Date(objData.dt_txt), "dd/MMMM/yyyy HH:mm", {
+                                                        locale: it,
+                                                    })}
+                                                </h2>
                                                 <Card.Title>{objData.weather[0].main}</Card.Title>
                                                 <Card.Text>{objData.weather[0].description}</Card.Text>
 
@@ -166,6 +177,34 @@ const DetailsSIngleCity = (props) => {
                                                 <div>Temp.Max: {objData.main.temp_max} C°</div>
                                                 <div>Umidità: {objData.main.humidity} %</div>
                                                 <div> nuvolosità: {objData.clouds.all}%</div>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                ))}
+                            </Row>
+                            <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
+                                {/* ulteriori 6 elementi in formato piccolo  */}
+                                {datiMeteoCitta.list.slice(3, 9).map((objData) => (
+                                    <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
+                                        <Card className="m-2">
+                                            <Card.Body>
+                                                <div className="d-flex">
+                                                    <h5>
+                                                        {format(new Date(objData.dt_txt), "dd/MMMM HH:mm", {
+                                                            locale: it,
+                                                        })}
+                                                    </h5>
+                                                    <Card.Img
+                                                        variant="top"
+                                                        src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
+                                                        alt="immagine meteo"
+                                                        style={{ width: "30%" }}
+                                                    />
+
+                                                    <Card.Title>{objData.weather[0].main}</Card.Title>
+                                                    <Card.Text>{objData.weather[0].description}</Card.Text>
+                                                    <h5> Temp: {objData.main.temp} C°</h5>
+                                                </div>
                                             </Card.Body>
                                         </Card>
                                     </Col>
