@@ -47,7 +47,7 @@ const App = () => {
                         }
                     />
                     <Route
-                        path="/moreInfosCity"
+                        path="/moreInfosCity/:cityName"
                         element={
                             <>
                                 <MyNavBarComponent />

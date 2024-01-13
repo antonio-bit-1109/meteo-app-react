@@ -188,7 +188,7 @@ const DetailsSIngleCity = (props) => {
                                             </div>
                                             <div>
                                                 {" "}
-                                                <Link to={"/moreInfosCity"}>
+                                                <Link to={`/moreInfosCity/${inputString || cityname}`}>
                                                     {" "}
                                                     <Button variant="secondary">Maggiori info sulla città</Button>
                                                 </Link>
