@@ -9,7 +9,9 @@ const MainPage = (props) => {
             <Container>
                 <Row className="justify-content-center">
                     <Col sm={12} md={12} lg={12} xl={12} xxl={12}>
-                        <div className="d-flex justify-content-center mt-5 display-3">Vediamo che tempo fa a...</div>
+                        <div className="d-flex justify-content-center mt-5 display-3">
+                            What's the weather like in ...
+                        </div>
                     </Col>
                     <Col sm={12} md={8} lg={6} xl={5} xxl={5}>
                         {" "}
@@ -18,7 +20,7 @@ const MainPage = (props) => {
                                 <Form className="d-flex">
                                     <Form.Control
                                         type="search"
-                                        placeholder="Cerca una città..."
+                                        placeholder="Type the name of a city (in English please...)"
                                         className="me-2"
                                         aria-label="Search"
                                         onChange={handleInputValue}
