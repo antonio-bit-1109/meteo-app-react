@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router";
+import Carousel from "react-bootstrap/Carousel";
 
 const CityQualityOfLifeComp = () => {
     const param = useParams();
@@ -83,7 +84,7 @@ const CityQualityOfLifeComp = () => {
     };
 
     return (
-        <>
+        <div>
             {cityQualityInfo && (
                 <>
                     <Col xxl={12}>
@@ -104,6 +105,20 @@ const CityQualityOfLifeComp = () => {
                     <Container>
                         <Row>
                             <Col>
+                                {" "}
+                                <div className="my-3">
+                                    <h2>
+                                        <span className="fs-3">PUNTEGGIO TOTALE: </span>
+                                        <span className="display-1">
+                                            {" "}
+                                            {Math.floor(cityQualityInfo.teleport_city_score * 100) / 100}
+                                        </span>
+                                    </h2>
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
                                 <div
                                     className="fs-3 my-3"
                                     dangerouslySetInnerHTML={{ __html: cityQualityInfo.summary }}
@@ -111,12 +126,23 @@ const CityQualityOfLifeComp = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col></Col>
+                            <Carousel className="my-4">
+                                {cityQualityInfo.categories.map((qualityProp) => (
+                                    <Carousel.Item key={`item-${qualityProp.color}`}>
+                                        <div>
+                                            <h1 style={{ color: qualityProp.color }}>
+                                                {qualityProp.name.toUpperCase()}
+                                            </h1>
+                                            <h3>{Math.floor(qualityProp.score_out_of_10 * 100) / 100}</h3>
+                                        </div>
+                                    </Carousel.Item>
+                                ))}
+                            </Carousel>
                         </Row>
                     </Container>
                 </>
             )}
-        </>
+        </div>
     );
 };
 
