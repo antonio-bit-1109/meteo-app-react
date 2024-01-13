@@ -209,7 +209,7 @@ const DetailsSIngleCity = (props) => {
                                         key={objData.dt}
                                         className="mx-auto" /*  sm={12} md={8} lg={6} xl={4} xxl={4} */
                                     >
-                                        <Card className="m-2">
+                                        <Card className="m-2 background-style">
                                             <Card.Body>
                                                 <h2>
                                                     {" "}
@@ -241,7 +241,7 @@ const DetailsSIngleCity = (props) => {
                                 {/* ulteriori 6 elementi in formato piccolo  */}
                                 {datiMeteoCitta.list.slice(3, 12).map((objData) => (
                                     <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
-                                        <Card className="m-2">
+                                        <Card className="m-2 background-style">
                                             <Card.Body>
                                                 <div className="d-flex">
                                                     <h5>

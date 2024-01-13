@@ -185,7 +185,7 @@ const CityQualityOfLifeComp = () => {
                                                 {qualityProp.name.toUpperCase()}
                                             </h1>
                                             <h2 className="display-4">
-                                                {Math.floor(qualityProp.score_out_of_10 * 100) / 100} Pt
+                                                {Math.floor(qualityProp.score_out_of_10 * 100) / 100} Pt / / 10 Pt
                                             </h2>
                                         </div>
                                     </Carousel.Item>
