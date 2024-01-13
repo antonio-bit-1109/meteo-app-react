@@ -245,11 +245,16 @@ const DetailsSIngleCity = (props) => {
                                                         src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
                                                         alt="immagine meteo"
                                                         style={{ width: "30%" }}
+                                                        className="mx-2"
                                                     />
+                                                    <div className="d-flex flex-column">
+                                                        <Card.Title>{objData.weather[0].main}</Card.Title>
+                                                        <Card.Text>{objData.weather[0].description}</Card.Text>
+                                                    </div>
 
-                                                    <Card.Title>{objData.weather[0].main}</Card.Title>
-                                                    <Card.Text>{objData.weather[0].description}</Card.Text>
-                                                    <h5> Temp: {objData.main.temp} C°</h5>
+                                                    <div className="ms-3">
+                                                        <h5> Temp: {objData.main.temp} C°</h5>
+                                                    </div>
                                                 </div>
                                             </Card.Body>
                                         </Card>
