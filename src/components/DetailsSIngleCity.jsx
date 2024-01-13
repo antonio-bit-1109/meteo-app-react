@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { format } from "date-fns";
 import InputComponent from "./InputComponent";
@@ -122,7 +122,7 @@ const DetailsSIngleCity = (props) => {
                     {datiMeteoCitta && (
                         <Container>
                             <Row className="justify-content-center">
-                                <Col sm={12} md={8} lg={6} xl={6} xxl={6}>
+                                <Col sm={12} md={8} lg={8} xl={6} xxl={6}>
                                     <div className="my-4">
                                         <InputComponent
                                             handleInputValue={handleInputValue}
@@ -134,15 +134,21 @@ const DetailsSIngleCity = (props) => {
                             <Row className="justify-content-center">
                                 {/* info generali sul meteo della città */}
                                 <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
-                                    <div className="m-3">
-                                        <div>
-                                            <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
-                                            <span className="fs-3">{datiMeteoCitta.city.country}</span>
+                                    <div className="d-flex align-items-center">
+                                        <div className="m-3">
+                                            <div>
+                                                <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
+                                                <span className="fs-3">{datiMeteoCitta.city.country}</span>
+                                            </div>
+                                            <div className="fs-5">latitudine: {datiMeteoCitta.city.coord.lat} , </div>
+                                            <div className="fs-5">longitudine: {datiMeteoCitta.city.coord.lon} </div>
+                                            <div className="fs-5">
+                                                popolazione : {datiMeteoCitta.city.population} abitanti
+                                            </div>
                                         </div>
-                                        <div className="fs-5">latitudine: {datiMeteoCitta.city.coord.lat} , </div>
-                                        <div className="fs-5">longitudine: {datiMeteoCitta.city.coord.lon} </div>
-                                        <div className="fs-5">
-                                            popolazione : {datiMeteoCitta.city.population} abitanti
+                                        <div>
+                                            {" "}
+                                            <Button variant="secondary">Maggiori info sulla città</Button>
                                         </div>
                                     </div>
                                 </Col>
@@ -154,7 +160,7 @@ const DetailsSIngleCity = (props) => {
                                         key={objData.dt}
                                         className="mx-auto" /*  sm={12} md={8} lg={6} xl={4} xxl={4} */
                                     >
-                                        <Card className="m-4">
+                                        <Card className="m-2">
                                             <Card.Body>
                                                 <h2>
                                                     {" "}
