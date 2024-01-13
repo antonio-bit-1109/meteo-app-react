@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import { format } from "date-fns";
 import InputComponent from "./InputComponent";
 import { it } from "date-fns/locale";
+import { Link } from "react-router-dom";
 
 const DetailsSIngleCity = (props) => {
     const { cityname } = props;
@@ -187,7 +188,10 @@ const DetailsSIngleCity = (props) => {
                                             </div>
                                             <div>
                                                 {" "}
-                                                <Button variant="secondary">Maggiori info sulla città</Button>
+                                                <Link to={"/moreInfosCity"}>
+                                                    {" "}
+                                                    <Button variant="secondary">Maggiori info sulla città</Button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

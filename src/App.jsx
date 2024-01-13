@@ -6,6 +6,7 @@ import { useState } from "react";
 import MainPage from "./components/MainPage";
 import DetailsSIngleCity from "./components/DetailsSIngleCity";
 import NotFoundComponent from "./components/NotFoundComponent";
+import CityQualityOfLifeComp from "./components/CityQualityOfLifeComp";
 
 const App = () => {
     const [cityname, setCityname] = useState("");
@@ -41,11 +42,19 @@ const App = () => {
                         path="*"
                         element={
                             <>
-                                <MyNavBarComponent /> <NotFoundComponent />{" "}
+                                <NotFoundComponent />{" "}
                             </>
                         }
                     />
-                    <Route />
+                    <Route
+                        path="/moreInfosCity"
+                        element={
+                            <>
+                                <MyNavBarComponent />
+                                <CityQualityOfLifeComp />
+                            </>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </div>
