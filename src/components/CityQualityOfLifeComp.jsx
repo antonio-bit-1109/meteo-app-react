@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router";
 
 const CityQualityOfLifeComp = () => {
     const param = useParams();
     console.log("PARAMETRO STRINGA", param);
+
+    const [cityQualityInfo, setQualityInfo] = useState(null);
 
     useEffect(() => {
         if (param.cityName) {
@@ -36,14 +39,26 @@ const CityQualityOfLifeComp = () => {
                 }
             })
             .then((datas) => {
-                console.log(datas);
+                console.log("INFO QUALITA", datas);
+                setQualityInfo(datas);
             })
             .catch((err) => {
                 console.error(err);
             });
     };
 
-    return <div></div>;
+    return (
+        <>
+            {" "}
+            {cityQualityInfo && (
+                <Container>
+                    <Row>
+                        <Col></Col>
+                    </Row>
+                </Container>
+            )}
+        </>
+    );
 };
 
 export default CityQualityOfLifeComp;

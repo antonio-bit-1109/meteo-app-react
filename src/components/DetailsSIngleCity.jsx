@@ -13,8 +13,8 @@ const DetailsSIngleCity = (props) => {
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
     const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
-    const [imagesCity, setImagesCity] = useState(null);
-    console.log("PNG CITTA", imagesCity);
+    const [imageCity, setImageCity] = useState(null);
+    console.log("PNG CITTA", imageCity);
 
     const [inputString, setInputString] = useState("");
     console.log("inputString", inputString);
@@ -140,7 +140,7 @@ const DetailsSIngleCity = (props) => {
             })
             .then((imagesData) => {
                 console.log("IMMAGINE", imagesData);
-                setImagesCity(imagesData.photos[0].image.mobile);
+                setImageCity(imagesData.photos[0].image.mobile);
             });
     };
 
@@ -150,9 +150,9 @@ const DetailsSIngleCity = (props) => {
                 <div
                     style={{
                         minHeight: "95vh",
-                        backgroundImage: imagesCity && `url(${imagesCity})`,
+                        backgroundImage: imageCity && `url(${imageCity})`,
                     }}
-                    className={!imagesCity ? "sfondo" : "dimensioni-Sfondo"}
+                    className={!imageCity ? "sfondo" : "dimensioni-Sfondo"}
                 >
                     {datiMeteoCitta && (
                         <Container>

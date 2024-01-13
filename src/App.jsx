@@ -39,19 +39,20 @@ const App = () => {
                         }
                     />
                     <Route
-                        path="*"
-                        element={
-                            <>
-                                <NotFoundComponent />{" "}
-                            </>
-                        }
-                    />
-                    <Route
                         path="/moreInfosCity/:cityName"
                         element={
                             <>
                                 <MyNavBarComponent />
                                 <CityQualityOfLifeComp />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="*"
+                        element={
+                            <>
+                                <MyNavBarComponent />
+                                <NotFoundComponent />{" "}
                             </>
                         }
                     />

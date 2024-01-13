@@ -8,7 +8,7 @@ const NotFoundComponent = () => {
     useEffect(() => {
         setTimeout(() => {
             navigate("/");
-        }, 5000);
+        }, 500000);
     }, []);
 
     return (
