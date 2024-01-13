@@ -12,6 +12,8 @@ const DetailsSIngleCity = (props) => {
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
     const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
+    const [imagesCity, setImagesCity] = useState(null);
+    console.log("PNG CITTA", imagesCity);
 
     const [inputString, setInputString] = useState("");
     console.log("inputString", inputString);
@@ -24,10 +26,12 @@ const DetailsSIngleCity = (props) => {
         event.preventDefault();
         console.log("Submit button clicked");
         FetchCityCoordinates(inputString);
+        fetchToGetImage(inputString);
     };
 
     useEffect(() => {
         FetchCityCoordinates(cityname);
+        fetchToGetImage(cityname);
     }, [cityname]);
 
     useEffect(() => {
@@ -109,7 +113,35 @@ const DetailsSIngleCity = (props) => {
             .catch((err) => console.error(err));
     };
     /* 3° fetch ad API https://api.teleport.org/api/urban_areas/slug:milan/images/ per ricavare img di sfondo (inglese) */
-    /*     const fetchToGetImage = () => {}; */
+    const fetchToGetImage = (value) => {
+        const options = {
+            method: "GET",
+            headers: {},
+        };
+
+        fetch(`https://api.teleport.org/api/urban_areas/slug:${value}/images/`, options)
+            .then((fetchResponse) => {
+                console.log(fetchResponse);
+                if (!fetchResponse.ok) {
+                    if (fetchResponse.status > 400 && fetchResponse.status < 500) {
+                        if (fetchResponse.status === 429) {
+                            throw new Error("429 INFAME PER TE TANTE COSE BRUTTE");
+                        } else {
+                            throw new Error("STAI CAPPELLANDO , RIGUARDA QUELLO CHE HAI SCRITTO");
+                        }
+                    }
+                    if (fetchResponse.status > 500 && fetchResponse.status < 600) {
+                        throw new Error("SERVER SPOMPATO, NON FUNZIA??");
+                    }
+                } else {
+                    return fetchResponse.json();
+                }
+            })
+            .then((imagesData) => {
+                console.log("IMMAGINE", imagesData);
+                setImagesCity(imagesData.photos[0].image.mobile);
+            });
+    };
 
     return (
         <>
@@ -117,8 +149,9 @@ const DetailsSIngleCity = (props) => {
                 <div
                     style={{
                         minHeight: "95vh",
+                        backgroundImage: imagesCity && `url(${imagesCity})`,
                     }}
-                    className="sfondo"
+                    className={!imagesCity ? "sfondo" : "dimensioni-Sfondo"}
                 >
                     {datiMeteoCitta && (
                         <Container>
@@ -136,20 +169,26 @@ const DetailsSIngleCity = (props) => {
                                 {/* info generali sul meteo della città */}
                                 <Col sm={12} md={8} lg={6} xl={4} xxl={4}>
                                     <div className="d-flex align-items-center">
-                                        <div className="m-3">
+                                        <div className="d-flex align-items-center p-2 background-style">
+                                            <div className="m-3">
+                                                <div>
+                                                    <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
+                                                    <span className="fs-3">{datiMeteoCitta.city.country}</span>
+                                                </div>
+                                                <div className="fs-5">
+                                                    latitudine: {datiMeteoCitta.city.coord.lat} ,{" "}
+                                                </div>
+                                                <div className="fs-5">
+                                                    longitudine: {datiMeteoCitta.city.coord.lon}{" "}
+                                                </div>
+                                                <div className="fs-5">
+                                                    popolazione : {datiMeteoCitta.city.population} abitanti
+                                                </div>
+                                            </div>
                                             <div>
-                                                <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
-                                                <span className="fs-3">{datiMeteoCitta.city.country}</span>
+                                                {" "}
+                                                <Button variant="secondary">Maggiori info sulla città</Button>
                                             </div>
-                                            <div className="fs-5">latitudine: {datiMeteoCitta.city.coord.lat} , </div>
-                                            <div className="fs-5">longitudine: {datiMeteoCitta.city.coord.lon} </div>
-                                            <div className="fs-5">
-                                                popolazione : {datiMeteoCitta.city.population} abitanti
-                                            </div>
-                                        </div>
-                                        <div>
-                                            {" "}
-                                            <Button variant="secondary">Maggiori info sulla città</Button>
                                         </div>
                                     </div>
                                 </Col>

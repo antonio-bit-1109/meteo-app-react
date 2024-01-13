@@ -12,3 +12,12 @@
     background: linear-gradient(0deg, rgba(136, 34, 195, 1) 0%, rgba(45, 241, 253, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8822c3",endColorstr="#2df1fd",GradientType=1);
 }
+
+.background-style {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dimensioni-Sfondo {
+    background-size: cover;
+    background-position: center;
+}
