@@ -21,3 +21,8 @@
     background-size: cover;
     background-position: center;
 }
+
+/* Nascondi gli indicatori del carousel in Bootstrap */
+.carousel-indicators {
+    display: none;
+}

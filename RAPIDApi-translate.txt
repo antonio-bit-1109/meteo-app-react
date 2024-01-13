@@ -1,0 +1,22 @@
+const url = 'https://translate281.p.rapidapi.com/';
+const options = {
+	method: 'POST',
+	headers: {
+		'content-type': 'application/x-www-form-urlencoded',
+		'X-RapidAPI-Key': 'd6e9cb0a6amsh24090e1f23b56e4p1220d1jsne74a23bfe846',
+		'X-RapidAPI-Host': 'translate281.p.rapidapi.com'
+	},
+	body: new URLSearchParams({
+		text: 'Rome, the Eternal City, is a historic marvel with great travel connections mild Mediterranean climate and intense urban energy. Its outgoing society is known for its style, fondness for football and the world-famous restaurants and cafes that can be sampled on every corner. Rome also hosts an independent country—Vatican City—within its borders. Its long history and modern achievements make Rome one of the most visited cities in the world.',
+		from: 'en',
+		to: 'it'
+	})
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.json();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}

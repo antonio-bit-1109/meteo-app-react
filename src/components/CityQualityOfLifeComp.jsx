@@ -13,12 +13,36 @@ const CityQualityOfLifeComp = () => {
     const [imageCity, setImageCity] = useState(null);
     console.log("PNG CITTA", imageCity);
 
+    /*     const [paroleTradotte, setparoleTradotte] = useState(null);
+    console.log("array di parole tradotte", paroleTradotte); */
+
+    /*     const [matriceDiParoleTradotte, setMatriceDiParoleTradotte] = useState(null);
+    console.log("matriceDiParoleTradotte", matriceDiParoleTradotte); */
+
     useEffect(() => {
         if (param.cityName) {
             fetchMoreCityInfos(param.cityName);
             fetchToGetImage(param.cityName);
         }
     }, [param.cityName]);
+
+    /*         useEffect(() => {
+        if (cityQualityInfo) {
+            const arrayOfWords = cityQualityInfo.categories.map((obj) => {
+                return obj.name;
+            });
+            console.log(arrayOfWords);
+            translateText(arrayOfWords);
+        }
+    }, [cityQualityInfo]); */
+
+    /* trasformo questo singolo array di stringhe in una matrice in modo da poterle usare nel carosello con il map  */
+    /*     useEffect(() => {
+        if (paroleTradotte) {
+            const matrix = paroleTradotte.split(",").map((item) => [item]);
+            return setMatriceDiParoleTradotte(matrix);
+        }
+    }, [paroleTradotte]); */
 
     const fetchToGetImage = (value) => {
         const options = {
@@ -83,6 +107,33 @@ const CityQualityOfLifeComp = () => {
             });
     };
 
+    /* fetch per la traduzione automatica dei testi dei dettagli sulla città in italiano */
+
+    /*     const translateText = (value) => {
+        const url = "https://translate281.p.rapidapi.com/";
+        const options = {
+            method: "POST",
+            headers: {
+                "content-type": "application/x-www-form-urlencoded",
+                "X-RapidAPI-Key": "d6e9cb0a6amsh24090e1f23b56e4p1220d1jsne74a23bfe846",
+                "X-RapidAPI-Host": "translate281.p.rapidapi.com",
+            },
+            body: new URLSearchParams({
+                text: value,
+                from: "en",
+                to: "it",
+            }),
+        };
+
+        fetch(url, options)
+            .then((response) => response.json())
+            .then((result) => {
+                console.log(result);
+                setparoleTradotte(result.response);
+            })
+            .catch((error) => console.error(error));
+    }; */
+
     return (
         <div>
             {cityQualityInfo && (
@@ -111,7 +162,7 @@ const CityQualityOfLifeComp = () => {
                                         <span className="fs-3">PUNTEGGIO TOTALE: </span>
                                         <span className="display-1">
                                             {" "}
-                                            {Math.floor(cityQualityInfo.teleport_city_score * 100) / 100}
+                                            {Math.floor(cityQualityInfo.teleport_city_score * 100) / 100} Pt
                                         </span>
                                     </h2>
                                 </div>
@@ -126,14 +177,16 @@ const CityQualityOfLifeComp = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <Carousel className="my-4">
+                            <Carousel data-bs-theme="dark" className="my-4 no-carousel-indicators">
                                 {cityQualityInfo.categories.map((qualityProp) => (
                                     <Carousel.Item key={`item-${qualityProp.color}`}>
-                                        <div>
-                                            <h1 style={{ color: qualityProp.color }}>
+                                        <div className="d-flex align-items-center justify-content-around">
+                                            <h1 className="display-3" style={{ color: qualityProp.color }}>
                                                 {qualityProp.name.toUpperCase()}
                                             </h1>
-                                            <h3>{Math.floor(qualityProp.score_out_of_10 * 100) / 100}</h3>
+                                            <h2 className="display-4">
+                                                {Math.floor(qualityProp.score_out_of_10 * 100) / 100} Pt
+                                            </h2>
                                         </div>
                                     </Carousel.Item>
                                 ))}
