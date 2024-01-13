@@ -14,9 +14,21 @@ const DetailsSIngleCity = (props) => {
     // const [cityImage, setcityImage] = useState(null);
     // console.log("IMMAGINE", cityImage);
 
+    const [inputString, setInputString] = useState("");
+    console.log("inputString", inputString);
+
+    const handleInputValue = (event) => {
+        setInputString(event.target.value);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log("Submit button clicked");
+        FetchCityCoordinates(inputString);
+    };
+
     useEffect(() => {
         FetchCityCoordinates(cityname);
-        // fetchAnImage(cityname);
     }, [cityname]);
 
     useEffect(() => {
@@ -150,7 +162,10 @@ const DetailsSIngleCity = (props) => {
                             <Row className="justify-content-center">
                                 <Col sm={12} md={8} lg={6} xl={6} xxl={6}>
                                     <div className="my-4">
-                                        <InputComponent />
+                                        <InputComponent
+                                            handleInputValue={handleInputValue}
+                                            handleSubmit={handleSubmit}
+                                        />
                                     </div>
                                 </Col>
                             </Row>
