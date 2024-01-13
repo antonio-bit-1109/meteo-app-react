@@ -193,10 +193,15 @@ const DetailsSIngleCity = (props) => {
                                     </div>
                                 </Col>
                             </Row>
-                            <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
+                            <Row>
                                 {/* primi 3 array con card grandi  */}
                                 {datiMeteoCitta.list.slice(0, 3).map((objData) => (
                                     <Col
+                                        sm={8}
+                                        md={6}
+                                        lg={4}
+                                        xl={4}
+                                        xxl={4}
                                         key={objData.dt}
                                         className="mx-auto" /*  sm={12} md={8} lg={6} xl={4} xxl={4} */
                                     >
@@ -230,7 +235,7 @@ const DetailsSIngleCity = (props) => {
                             </Row>
                             <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
                                 {/* ulteriori 6 elementi in formato piccolo  */}
-                                {datiMeteoCitta.list.slice(3, 9).map((objData) => (
+                                {datiMeteoCitta.list.slice(3, 12).map((objData) => (
                                     <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
                                         <Card className="m-2">
                                             <Card.Body>
