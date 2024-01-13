@@ -108,6 +108,8 @@ const DetailsSIngleCity = (props) => {
             })
             .catch((err) => console.error(err));
     };
+    /* 3° fetch ad API https://api.teleport.org/api/urban_areas/slug:milan/images/ per ricavare img di sfondo (inglese) */
+    /*     const fetchToGetImage = () => {}; */
 
     return (
         <>
@@ -115,7 +117,6 @@ const DetailsSIngleCity = (props) => {
                 <div
                     style={{
                         minHeight: "95vh",
-                        // backgroundImage: cityImage ? `url(${cityImage})` : "none",
                     }}
                     className="sfondo"
                 >
