@@ -31,3 +31,11 @@
     max-width: 650px;
     max-height: 650px;
 }
+
+.colorSfondo {
+    background-color: antiquewhite;
+}
+
+.mb-7 {
+    margin-bottom: 5rem !important;
+}

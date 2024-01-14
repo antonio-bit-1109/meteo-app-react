@@ -172,7 +172,10 @@ const DetailsSIngleCity = (props) => {
                                         {" "}
                                         <Link to={`/moreInfosCity/${inputString || cityname}`}>
                                             {" "}
-                                            <Button className="text-light border" variant="transparent">
+                                            <Button
+                                                className="text-light border background-style"
+                                                variant="transparent"
+                                            >
                                                 Maggiori info sulla città
                                             </Button>
                                         </Link>
@@ -203,7 +206,10 @@ const DetailsSIngleCity = (props) => {
                                 <Row className="justify-content-center">
                                     {/* info generali - cirle */}
                                     {datiMeteoCitta.list.slice(0, 1).map((objData) => (
-                                        <div className="text-center border border-opacity-75 border-secondary rounded-circle background-style p-5 my-5 max-width-cerchio">
+                                        <div
+                                            key={objData.dt}
+                                            className="text-center border border-opacity-75 border-secondary rounded-circle background-style p-5 my-5 max-width-cerchio"
+                                        >
                                             <div>
                                                 <h2 className="display-3 fw-semibold">
                                                     {" "}

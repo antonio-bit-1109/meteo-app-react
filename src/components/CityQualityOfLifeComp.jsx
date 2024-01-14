@@ -146,7 +146,7 @@ const CityQualityOfLifeComp = () => {
     };
 
     return (
-        <div>
+        <div className="colorSfondo">
             {cityQualityInfo && matriceDiParoleTradotte && (
                 <>
                     <Col xxl={12}>
@@ -191,7 +191,7 @@ const CityQualityOfLifeComp = () => {
                             <Carousel data-bs-theme="dark" className="my-4 no-carousel-indicators">
                                 {cityQualityInfo.categories.map((qualityProp, index) => (
                                     <Carousel.Item key={`item-${qualityProp.color}`}>
-                                        <div className="d-flex align-items-center justify-content-around">
+                                        <div className="d-flex align-items-center justify-content-around mb-7">
                                             <h1 className="display-3" style={{ color: qualityProp.color }}>
                                                 {matriceDiParoleTradotte[0][index]}
                                             </h1>
