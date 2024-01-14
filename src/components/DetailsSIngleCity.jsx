@@ -197,7 +197,7 @@ const DetailsSIngleCity = (props) => {
                             <Container>
                                 <Row className="justify-content-center">
                                     {datiMeteoCitta.list.slice(0, 1).map((objData) => (
-                                        <div className="text-center rounded-circle background-style p-5 my-5 max-width-cerchio">
+                                        <div className="text-center border border-opacity-75 border-secondary rounded-circle background-style p-5 my-5 max-width-cerchio">
                                             <h2>
                                                 {" "}
                                                 {format(new Date(objData.dt_txt), "dd MMMM HH:mm", {
