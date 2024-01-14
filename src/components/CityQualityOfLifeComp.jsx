@@ -166,7 +166,7 @@ const CityQualityOfLifeComp = () => {
                         </div>
                     </Col>
 
-                    <Container>
+                    <Container className="position-relative">
                         <Row>
                             <Col>
                                 {" "}
@@ -175,7 +175,7 @@ const CityQualityOfLifeComp = () => {
                                         <Link to={`/DettagliCitta/${param.cityName}`}>
                                             <div className="d-flex align-items-center">
                                                 {" "}
-                                                <ArrowLeft className="display-3" />{" "}
+                                                <ArrowLeft className="display-3 text-black position-absolute  top-0 start-0" />{" "}
                                             </div>
                                         </Link>
                                         <div className="display-2">PUNTEGGIO TOTALE </div>
