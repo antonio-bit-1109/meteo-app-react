@@ -181,21 +181,51 @@ const DetailsSIngleCity = (props) => {
                             <Row className="m-auto">
                                 {/* info generali sul meteo della città */}
                                 <Col>
-                                    <div className=" d-flex gap-5 align-items-end background-style justify-content-center">
+                                    <div className="rounded-2 background-style d-flex flex-column">
                                         <div>
                                             <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
-                                            <span className="fs-3">{datiMeteoCitta.city.country}</span>
+                                            <span className="display-3">{datiMeteoCitta.city.country}</span>
                                         </div>
-                                        <div className="fs-5">latitudine: {datiMeteoCitta.city.coord.lat} , </div>
-                                        <div className="fs-5">longitudine: {datiMeteoCitta.city.coord.lon} </div>
+                                        <div className="fs-5">Latitudine: {datiMeteoCitta.city.coord.lat} , </div>
+                                        <div className="fs-5">Longitudine: {datiMeteoCitta.city.coord.lon} </div>
                                         <div className="fs-5">
-                                            popolazione : {datiMeteoCitta.city.population} abitanti
+                                            Popolazione : {datiMeteoCitta.city.population} abitanti
                                         </div>
                                     </div>
                                 </Col>
                             </Row>
-                            <Row>
-                                {/* primi 3 array con card grandi  */}
+                            <Container>
+                                <Row className="justify-content-center">
+                                    {datiMeteoCitta.list.slice(0, 1).map((objData) => (
+                                        <div className="text-center rounded-circle background-style p-5 my-5 max-width-cerchio">
+                                            <h2>
+                                                {" "}
+                                                {format(new Date(objData.dt_txt), "dd MMMM HH:mm", {
+                                                    locale: it,
+                                                })}
+                                            </h2>
+                                            <h3>{objData.weather[0].main}</h3>
+                                            <h6>{objData.weather[0].description}</h6>
+
+                                            <Card.Img
+                                                variant="top"
+                                                src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
+                                                alt="immagine meteo"
+                                                style={{ width: "30%" }}
+                                            />
+                                            <h2> Temperatura : {objData.main.temp} C°</h2>
+                                            <div>Percepita: {objData.main.feels_like} C°</div>
+                                            <div>Temp.min: {objData.main.temp_min} C°</div>
+                                            <div>Temp.Max: {objData.main.temp_max} C°</div>
+                                            <div>Umidità: {objData.main.humidity} %</div>
+                                            <div> nuvolosità: {objData.clouds.all}%</div>
+                                        </div>
+                                    ))}{" "}
+                                </Row>
+                            </Container>
+                            {/* primi 3 array con card grandi  */}
+
+                            {/* <Row>
                                 {datiMeteoCitta.list.slice(0, 3).map((objData) => (
                                     <Col
                                         sm={8}
@@ -204,7 +234,7 @@ const DetailsSIngleCity = (props) => {
                                         xl={4}
                                         xxl={4}
                                         key={objData.dt}
-                                        className="mx-auto" /*  sm={12} md={8} lg={6} xl={4} xxl={4} */
+                                        className="mx-auto" 
                                     >
                                         <Card className="m-2 background-style">
                                             <Card.Body>
@@ -233,7 +263,8 @@ const DetailsSIngleCity = (props) => {
                                         </Card>
                                     </Col>
                                 ))}
-                            </Row>
+                            </Row> */}
+
                             <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
                                 {/* ulteriori 6 elementi in formato piccolo  */}
                                 {datiMeteoCitta.list.slice(3, 12).map((objData) => (

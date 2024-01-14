@@ -26,3 +26,8 @@
 .carousel-indicators {
     display: none;
 }
+
+.max-width-cerchio {
+    max-width: 550px;
+    max-height: 550px;
+}
