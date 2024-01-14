@@ -172,10 +172,7 @@ const DetailsSIngleCity = (props) => {
                                         {" "}
                                         <Link to={`/moreInfosCity/${inputString || cityname}`}>
                                             {" "}
-                                            <Button
-                                                className="text-light border background-style"
-                                                variant="transparent"
-                                            >
+                                            <Button className="text-black border background-style" variant="info">
                                                 Maggiori info sulla città
                                             </Button>
                                         </Link>
@@ -193,10 +190,17 @@ const DetailsSIngleCity = (props) => {
                                             <span className="display-3 fw-bold">{datiMeteoCitta.city.country}</span>
                                         </div>
                                         <div className="rounded-2 background-style d-flex flex-column p-4">
-                                            <div className="fs-5">Latitudine: {datiMeteoCitta.city.coord.lat} , </div>
-                                            <div className="fs-5">Longitudine: {datiMeteoCitta.city.coord.lon} </div>
                                             <div className="fs-5">
-                                                Popolazione : {datiMeteoCitta.city.population} abitanti
+                                                <span className="fw-semibold">Latitudine:</span>{" "}
+                                                {datiMeteoCitta.city.coord.lat} ,{" "}
+                                            </div>
+                                            <div className="fs-5">
+                                                <span className="fw-semibold">Longitudine:</span>{" "}
+                                                {datiMeteoCitta.city.coord.lon}{" "}
+                                            </div>
+                                            <div className="fs-5">
+                                                <span className="fw-semibold"> Popolazione :</span>{" "}
+                                                {datiMeteoCitta.city.population} abitanti
                                             </div>
                                         </div>
                                     </div>
