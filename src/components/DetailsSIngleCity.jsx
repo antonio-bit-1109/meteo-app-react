@@ -246,7 +246,7 @@ const DetailsSIngleCity = (props) => {
                                 </Row>
                             </Container>
 
-                            <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
+                            <Row>
                                 {/* info meteo 1 giorno successivo */}
                                 {datiMeteoCitta.list.slice(6, 9).map((objData) => (
                                     <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
@@ -279,7 +279,7 @@ const DetailsSIngleCity = (props) => {
                                     </Col>
                                 ))}
                             </Row>
-                            <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
+                            <Row>
                                 {/* info meteo 2 giorno successivo */}
                                 {datiMeteoCitta.list.slice(14, 17).map((objData) => (
                                     <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
@@ -312,7 +312,7 @@ const DetailsSIngleCity = (props) => {
                                     </Col>
                                 ))}
                             </Row>
-                            <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
+                            <Row>
                                 {/* info meteo 3 giorno successivo */}
                                 {datiMeteoCitta.list.slice(22, 25).map((objData) => (
                                     <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
