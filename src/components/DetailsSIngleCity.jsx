@@ -157,8 +157,8 @@ const DetailsSIngleCity = (props) => {
                     {datiMeteoCitta && (
                         <Container>
                             <Row className="justify-content-center align-items-center">
-                                <Col sm={12}>
-                                    <div className="m-5">
+                                <Col sm={12} md={10} lg={8} xl={6} xxl={6}>
+                                    <div className="m-5 w-75">
                                         <InputComponent
                                             handleInputValue={handleInputValue}
                                             handleSubmit={handleSubmit}
@@ -181,15 +181,18 @@ const DetailsSIngleCity = (props) => {
                             <Row className="m-auto">
                                 {/* info generali sul meteo della città */}
                                 <Col>
-                                    <div className="rounded-2 background-style d-flex flex-column">
-                                        <div>
-                                            <span className="display-3">{datiMeteoCitta.city.name}</span> ,{" "}
-                                            <span className="display-3">{datiMeteoCitta.city.country}</span>
+                                    <div className="text-center">
+                                        <div className="my-5">
+                                            <span className="display-3 fw-bold">{datiMeteoCitta.city.name}</span>{" "}
+                                            <span className="display-3 fw-bold">-</span>
+                                            <span className="display-3 fw-bold">{datiMeteoCitta.city.country}</span>
                                         </div>
-                                        <div className="fs-5">Latitudine: {datiMeteoCitta.city.coord.lat} , </div>
-                                        <div className="fs-5">Longitudine: {datiMeteoCitta.city.coord.lon} </div>
-                                        <div className="fs-5">
-                                            Popolazione : {datiMeteoCitta.city.population} abitanti
+                                        <div className="rounded-2 background-style d-flex flex-column">
+                                            <div className="fs-5">Latitudine: {datiMeteoCitta.city.coord.lat} , </div>
+                                            <div className="fs-5">Longitudine: {datiMeteoCitta.city.coord.lon} </div>
+                                            <div className="fs-5">
+                                                Popolazione : {datiMeteoCitta.city.population} abitanti
+                                            </div>
                                         </div>
                                     </div>
                                 </Col>

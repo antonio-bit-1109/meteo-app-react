@@ -8,18 +8,19 @@ const InputComponent = (props) => {
 
     return (
         <>
-            <InputGroup className="justify-content-center">
+            <InputGroup className="justify-content-center w-100">
                 {" "}
                 {/* <InputGroup.Text id="basic-addon1">quale città stai cercando ?</InputGroup.Text> */}
-                <Form onSubmit={handleSubmit}>
+                <Form className="w-100" onSubmit={handleSubmit}>
                     <div className="d-flex">
                         <Form.Control
+                            className="rounded-0"
                             placeholder="Search the name of a City..."
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                             onChange={handleInputValue}
                         ></Form.Control>
-                        <Button type="submit" variant="dark" className="text-light px-4">
+                        <Button type="submit" variant="dark" className="text-light px-4 rounded-end-pill">
                             {" "}
                             cerca{" "}
                         </Button>
