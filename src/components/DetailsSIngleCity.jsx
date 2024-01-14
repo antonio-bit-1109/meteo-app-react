@@ -166,13 +166,13 @@ const DetailsSIngleCity = (props) => {
                                         />
                                     </div>
                                 </Col>
-                                <Col sm={12}>
+                                <Col sm={12} md={10} lg={4}>
                                     {/* bottone  */}
-                                    <div className="d-flex justify-content-center">
+                                    <div className="d-flex justify-content-center justify-content-lg-end">
                                         {" "}
                                         <Link to={`/moreInfosCity/${inputString || cityname}`}>
                                             {" "}
-                                            <Button className="text-light" variant="info">
+                                            <Button className="text-light border" variant="transparent">
                                                 Maggiori info sulla città
                                             </Button>
                                         </Link>
@@ -205,20 +205,20 @@ const DetailsSIngleCity = (props) => {
                                     {datiMeteoCitta.list.slice(0, 1).map((objData) => (
                                         <div className="text-center border border-opacity-75 border-secondary rounded-circle background-style p-5 my-5 max-width-cerchio">
                                             <div>
-                                                <h2 className="display-3">
+                                                <h2 className="display-3 fw-semibold">
                                                     {" "}
                                                     {format(new Date(objData.dt_txt), "dd MMMM", {
                                                         locale: it,
                                                     })}
                                                 </h2>
-                                                <h2 className="display-3">
+                                                <h2 className="display-3 fw-semibold">
                                                     {" "}
                                                     {format(new Date(objData.dt_txt), " HH:mm", {
                                                         locale: it,
                                                     })}
                                                 </h2>
                                             </div>
-                                            <h3>{objData.weather[0].main}</h3>
+                                            <h3 className="fs-2">{objData.weather[0].main}</h3>
                                             <h6>{objData.weather[0].description}</h6>
 
                                             <Card.Img

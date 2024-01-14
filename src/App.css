@@ -14,7 +14,7 @@
 }
 
 .background-style {
-    background-color: rgba(255, 255, 255, 0.534);
+    background-color: rgba(255, 255, 255, 0.692);
 }
 
 .dimensioni-Sfondo {
@@ -28,6 +28,6 @@
 }
 
 .max-width-cerchio {
-    max-width: 550px;
-    max-height: 550px;
+    max-width: 650px;
+    max-height: 650px;
 }
