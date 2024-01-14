@@ -33,15 +33,6 @@ const DetailsSIngleCity = (props) => {
         fetchToGetImage(inputString);
     };
 
-    /*     useEffect(() => {
-        const cityNameFromApp = {cityname}
-        if (cityNameFromApp === cityname ){
-
-        }
-        FetchCityCoordinates(cityname);
-        fetchToGetImage(cityname);
-    }, [cityname]); */
-
     useEffect(() => {
         FetchCityCoordinates(param.IdData || cityname);
         fetchToGetImage(param.IdData || cityname);

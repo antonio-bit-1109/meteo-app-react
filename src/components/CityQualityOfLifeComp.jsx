@@ -46,16 +46,6 @@ const CityQualityOfLifeComp = () => {
         }
     }, [paroleTradotte]);
 
-    /*     useEffect(() => {
-        if (paroleTradotte) {
-            const paroleTradotteMatrix = [paroleTradotte.split(",")];
-            console.log(paroleTradotteMatrix);
-            setMatriceDiParoleTradotte(paroleTradotteMatrix);
-             const coso = paroleTradotte.trans.split(",");
-            console.log("coso", coso);
-        }
-    }, [paroleTradotte]); */
-
     const fetchToGetImage = (value) => {
         const options = {
             method: "GET",
