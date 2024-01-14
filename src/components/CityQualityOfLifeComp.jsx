@@ -13,11 +13,11 @@ const CityQualityOfLifeComp = () => {
     const [imageCity, setImageCity] = useState(null);
     console.log("PNG CITTA", imageCity);
 
-    /*     const [paroleTradotte, setparoleTradotte] = useState(null);
-    console.log("array di parole tradotte", paroleTradotte); */
+    const [paroleTradotte, setparoleTradotte] = useState(null);
+    console.log("array di parole tradotteEEEE", paroleTradotte);
 
-    /*     const [matriceDiParoleTradotte, setMatriceDiParoleTradotte] = useState(null);
-    console.log("matriceDiParoleTradotte", matriceDiParoleTradotte); */
+    const [matriceDiParoleTradotte, setMatriceDiParoleTradotte] = useState(null);
+    console.log("matriceDiParoleTradotte", matriceDiParoleTradotte);
 
     useEffect(() => {
         if (param.cityName) {
@@ -26,7 +26,7 @@ const CityQualityOfLifeComp = () => {
         }
     }, [param.cityName]);
 
-    /*         useEffect(() => {
+    useEffect(() => {
         if (cityQualityInfo) {
             const arrayOfWords = cityQualityInfo.categories.map((obj) => {
                 return obj.name;
@@ -34,13 +34,23 @@ const CityQualityOfLifeComp = () => {
             console.log(arrayOfWords);
             translateText(arrayOfWords);
         }
-    }, [cityQualityInfo]); */
+    }, [cityQualityInfo]);
 
-    /* trasformo questo singolo array di stringhe in una matrice in modo da poterle usare nel carosello con il map  */
+    useEffect(() => {
+        if (paroleTradotte) {
+            const matrice = [paroleTradotte[0].split(",")];
+            console.log("matrice", matrice);
+            setMatriceDiParoleTradotte(matrice);
+        }
+    }, [paroleTradotte]);
+
     /*     useEffect(() => {
         if (paroleTradotte) {
-            const matrix = paroleTradotte.split(",").map((item) => [item]);
-            return setMatriceDiParoleTradotte(matrix);
+            const paroleTradotteMatrix = [paroleTradotte.split(",")];
+            console.log(paroleTradotteMatrix);
+            setMatriceDiParoleTradotte(paroleTradotteMatrix);
+             const coso = paroleTradotte.trans.split(",");
+            console.log("coso", coso);
         }
     }, [paroleTradotte]); */
 
@@ -109,14 +119,14 @@ const CityQualityOfLifeComp = () => {
 
     /* fetch per la traduzione automatica dei testi dei dettagli sulla città in italiano */
 
-    /*     const translateText = (value) => {
-        const url = "https://translate281.p.rapidapi.com/";
+    const translateText = (value) => {
+        const url = "https://google-translate113.p.rapidapi.com/api/v1/translator/text";
         const options = {
             method: "POST",
             headers: {
                 "content-type": "application/x-www-form-urlencoded",
                 "X-RapidAPI-Key": "d6e9cb0a6amsh24090e1f23b56e4p1220d1jsne74a23bfe846",
-                "X-RapidAPI-Host": "translate281.p.rapidapi.com",
+                "X-RapidAPI-Host": "google-translate113.p.rapidapi.com",
             },
             body: new URLSearchParams({
                 text: value,
@@ -128,15 +138,16 @@ const CityQualityOfLifeComp = () => {
         fetch(url, options)
             .then((response) => response.json())
             .then((result) => {
-                console.log(result);
-                setparoleTradotte(result.response);
+                console.log("RESULT", result);
+                /*   setparoleTradotte(result.trans); */
+                setparoleTradotte([result.trans]);
             })
             .catch((error) => console.error(error));
-    }; */
+    };
 
     return (
         <div>
-            {cityQualityInfo && (
+            {cityQualityInfo && matriceDiParoleTradotte && (
                 <>
                     <Col xxl={12}>
                         <div>
@@ -178,12 +189,13 @@ const CityQualityOfLifeComp = () => {
                         </Row>
                         <Row>
                             <Carousel data-bs-theme="dark" className="my-4 no-carousel-indicators">
-                                {cityQualityInfo.categories.map((qualityProp) => (
+                                {cityQualityInfo.categories.map((qualityProp, index) => (
                                     <Carousel.Item key={`item-${qualityProp.color}`}>
                                         <div className="d-flex align-items-center justify-content-around">
                                             <h1 className="display-3" style={{ color: qualityProp.color }}>
-                                                {qualityProp.name.toUpperCase()}
+                                                {matriceDiParoleTradotte[0][index]}
                                             </h1>
+
                                             <h2 className="display-4">
                                                 {Math.floor(qualityProp.score_out_of_10 * 100) / 100} Pt / / 10 Pt
                                             </h2>

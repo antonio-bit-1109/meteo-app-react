@@ -247,7 +247,7 @@ const DetailsSIngleCity = (props) => {
                                                     </h5>
                                                     <Card.Img
                                                         variant="top"
-                                                        src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
+                                                        src={`https://openweathermap.org/img/wn/${objData.weather[0].icon}.png`}
                                                         alt="immagine meteo"
                                                         style={{ width: "30%" }}
                                                         className="mx-2"
