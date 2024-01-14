@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router";
 import Carousel from "react-bootstrap/Carousel";
+import { ArrowLeft } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 
 const CityQualityOfLifeComp = () => {
     const param = useParams();
@@ -168,12 +170,20 @@ const CityQualityOfLifeComp = () => {
                         <Row>
                             <Col>
                                 {" "}
-                                <div className="my-3">
+                                <div className="my-3 text-center">
+                                    <div className="d-flex justify-content-center align-items">
+                                        <Link to={`/DettagliCitta/${param.cityName}`}>
+                                            <div className="d-flex align-items-center">
+                                                {" "}
+                                                <ArrowLeft className="display-3" />{" "}
+                                            </div>
+                                        </Link>
+                                        <div className="display-2">PUNTEGGIO TOTALE </div>
+                                    </div>
                                     <h2>
-                                        <span className="fs-3">PUNTEGGIO TOTALE: </span>
                                         <span className="display-1">
                                             {" "}
-                                            {Math.floor(cityQualityInfo.teleport_city_score * 100) / 100} Pt
+                                            {Math.floor(cityQualityInfo.teleport_city_score * 100) / 100} / 100
                                         </span>
                                     </h2>
                                 </div>
@@ -197,7 +207,7 @@ const CityQualityOfLifeComp = () => {
                                             </h1>
 
                                             <h2 className="display-4">
-                                                {Math.floor(qualityProp.score_out_of_10 * 100) / 100} Pt / / 10 Pt
+                                                {Math.floor(qualityProp.score_out_of_10 * 100) / 100} / 10
                                             </h2>
                                         </div>
                                     </Carousel.Item>

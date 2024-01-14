@@ -4,9 +4,12 @@ import Card from "react-bootstrap/Card";
 import { format } from "date-fns";
 import InputComponent from "./InputComponent";
 import { it } from "date-fns/locale";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const DetailsSIngleCity = (props) => {
+    const param = useParams();
+    console.log("param", param.IdData);
+
     const { cityname } = props;
     console.log("DATI METEO CITTA", cityname);
 
@@ -30,10 +33,19 @@ const DetailsSIngleCity = (props) => {
         fetchToGetImage(inputString);
     };
 
-    useEffect(() => {
+    /*     useEffect(() => {
+        const cityNameFromApp = {cityname}
+        if (cityNameFromApp === cityname ){
+
+        }
         FetchCityCoordinates(cityname);
         fetchToGetImage(cityname);
-    }, [cityname]);
+    }, [cityname]); */
+
+    useEffect(() => {
+        FetchCityCoordinates(param.IdData || cityname);
+        fetchToGetImage(param.IdData || cityname);
+    }, [cityname, param.IdData]);
 
     useEffect(() => {
         if (lat && lon) {
