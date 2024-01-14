@@ -156,6 +156,7 @@ const DetailsSIngleCity = (props) => {
                 >
                     {datiMeteoCitta && (
                         <Container>
+                            {/* input per ricerca città */}
                             <Row className="justify-content-center align-items-center">
                                 <Col sm={12} md={10} lg={8} xl={6} xxl={6}>
                                     <div className="m-5 w-75">
@@ -166,7 +167,8 @@ const DetailsSIngleCity = (props) => {
                                     </div>
                                 </Col>
                                 <Col sm={12}>
-                                    <div className="d-flex justify-content-center mb-5">
+                                    {/* bottone  */}
+                                    <div className="d-flex justify-content-center">
                                         {" "}
                                         <Link to={`/moreInfosCity/${inputString || cityname}`}>
                                             {" "}
@@ -179,7 +181,7 @@ const DetailsSIngleCity = (props) => {
                             </Row>
 
                             <Row className="m-auto">
-                                {/* info generali sul meteo della città */}
+                                {/* info generali sul meteo della città riquadro */}
                                 <Col>
                                     <div className="text-center">
                                         <div className="my-5">
@@ -187,7 +189,7 @@ const DetailsSIngleCity = (props) => {
                                             <span className="display-3 fw-bold">-</span>
                                             <span className="display-3 fw-bold">{datiMeteoCitta.city.country}</span>
                                         </div>
-                                        <div className="rounded-2 background-style d-flex flex-column">
+                                        <div className="rounded-2 background-style d-flex flex-column p-4">
                                             <div className="fs-5">Latitudine: {datiMeteoCitta.city.coord.lat} , </div>
                                             <div className="fs-5">Longitudine: {datiMeteoCitta.city.coord.lon} </div>
                                             <div className="fs-5">
@@ -199,14 +201,23 @@ const DetailsSIngleCity = (props) => {
                             </Row>
                             <Container>
                                 <Row className="justify-content-center">
+                                    {/* info generali - cirle */}
                                     {datiMeteoCitta.list.slice(0, 1).map((objData) => (
                                         <div className="text-center border border-opacity-75 border-secondary rounded-circle background-style p-5 my-5 max-width-cerchio">
-                                            <h2>
-                                                {" "}
-                                                {format(new Date(objData.dt_txt), "dd MMMM HH:mm", {
-                                                    locale: it,
-                                                })}
-                                            </h2>
+                                            <div>
+                                                <h2 className="display-3">
+                                                    {" "}
+                                                    {format(new Date(objData.dt_txt), "dd MMMM", {
+                                                        locale: it,
+                                                    })}
+                                                </h2>
+                                                <h2 className="display-3">
+                                                    {" "}
+                                                    {format(new Date(objData.dt_txt), " HH:mm", {
+                                                        locale: it,
+                                                    })}
+                                                </h2>
+                                            </div>
                                             <h3>{objData.weather[0].main}</h3>
                                             <h6>{objData.weather[0].description}</h6>
 
@@ -214,69 +225,89 @@ const DetailsSIngleCity = (props) => {
                                                 variant="top"
                                                 src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
                                                 alt="immagine meteo"
-                                                style={{ width: "30%" }}
+                                                style={{ width: "150px" }}
                                             />
-                                            <h2> Temperatura : {objData.main.temp} C°</h2>
-                                            <div>Percepita: {objData.main.feels_like} C°</div>
-                                            <div>Temp.min: {objData.main.temp_min} C°</div>
-                                            <div>Temp.Max: {objData.main.temp_max} C°</div>
-                                            <div>Umidità: {objData.main.humidity} %</div>
-                                            <div> nuvolosità: {objData.clouds.all}%</div>
+                                            <h2 className="display-2 fw-bolder m-0 mb-lg-5"> {objData.main.temp} C°</h2>
                                         </div>
                                     ))}{" "}
                                 </Row>
                             </Container>
-                            {/* primi 3 array con card grandi  */}
 
-                            {/* <Row>
-                                {datiMeteoCitta.list.slice(0, 3).map((objData) => (
-                                    <Col
-                                        sm={8}
-                                        md={6}
-                                        lg={4}
-                                        xl={4}
-                                        xxl={4}
-                                        key={objData.dt}
-                                        className="mx-auto" 
-                                    >
+                            <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
+                                {/* info meteo 1 giorno successivo */}
+                                {datiMeteoCitta.list.slice(6, 9).map((objData) => (
+                                    <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
                                         <Card className="m-2 background-style">
                                             <Card.Body>
-                                                <h2>
-                                                    {" "}
-                                                    {format(new Date(objData.dt_txt), "dd/MMMM/yyyy HH:mm", {
-                                                        locale: it,
-                                                    })}
-                                                </h2>
-                                                <Card.Title>{objData.weather[0].main}</Card.Title>
-                                                <Card.Text>{objData.weather[0].description}</Card.Text>
+                                                <div className="d-flex align-items-center">
+                                                    <h5>
+                                                        {format(new Date(objData.dt_txt), "dd MMMM HH:mm", {
+                                                            locale: it,
+                                                        })}
+                                                    </h5>
+                                                    <Card.Img
+                                                        variant="top"
+                                                        src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
+                                                        alt="immagine meteo"
+                                                        style={{ width: "30%" }}
+                                                        className="mx-2"
+                                                    />
+                                                    <div className="d-flex flex-column">
+                                                        <Card.Title>{objData.weather[0].main}</Card.Title>
+                                                        <Card.Text>{objData.weather[0].description}</Card.Text>
+                                                    </div>
 
-                                                <Card.Img
-                                                    variant="top"
-                                                    src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
-                                                    alt="immagine meteo"
-                                                    style={{ width: "30%" }}
-                                                />
-                                                <h5> temperatura : {objData.main.temp} C°</h5>
-                                                <div>Percepita: {objData.main.feels_like} C°</div>
-                                                <div>Temp.min: {objData.main.temp_min} C°</div>
-                                                <div>Temp.Max: {objData.main.temp_max} C°</div>
-                                                <div>Umidità: {objData.main.humidity} %</div>
-                                                <div> nuvolosità: {objData.clouds.all}%</div>
+                                                    <div className="ms-3">
+                                                        <h5> Temp: {objData.main.temp} C°</h5>
+                                                    </div>
+                                                </div>
                                             </Card.Body>
                                         </Card>
                                     </Col>
                                 ))}
-                            </Row> */}
-
+                            </Row>
                             <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
-                                {/* ulteriori 6 elementi in formato piccolo  */}
-                                {datiMeteoCitta.list.slice(3, 12).map((objData) => (
+                                {/* info meteo 2 giorno successivo */}
+                                {datiMeteoCitta.list.slice(14, 17).map((objData) => (
                                     <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
                                         <Card className="m-2 background-style">
                                             <Card.Body>
-                                                <div className="d-flex">
+                                                <div className="d-flex align-items-center">
                                                     <h5>
-                                                        {format(new Date(objData.dt_txt), "dd/MMMM HH:mm", {
+                                                        {format(new Date(objData.dt_txt), "dd MMMM HH:mm", {
+                                                            locale: it,
+                                                        })}
+                                                    </h5>
+                                                    <Card.Img
+                                                        variant="top"
+                                                        src={`https://openweathermap.org/img/w/${objData.weather[0].icon}.png`}
+                                                        alt="immagine meteo"
+                                                        style={{ width: "30%" }}
+                                                        className="mx-2"
+                                                    />
+                                                    <div className="d-flex flex-column">
+                                                        <Card.Title>{objData.weather[0].main}</Card.Title>
+                                                        <Card.Text>{objData.weather[0].description}</Card.Text>
+                                                    </div>
+
+                                                    <div className="ms-3">
+                                                        <h5> Temp: {objData.main.temp} C°</h5>
+                                                    </div>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                ))}
+                            </Row>
+                            <Row sm={1} md={2} lg={3} xl={4} xxl={4}>
+                                {/* info meteo 3 giorno successivo */}
+                                {datiMeteoCitta.list.slice(22, 25).map((objData) => (
+                                    <Col key={objData.dt} className="mx-auto" sm={12} md={8} lg={6} xl={4} xxl={4}>
+                                        <Card className="m-2 background-style">
+                                            <Card.Body>
+                                                <div className="d-flex align-items-center">
+                                                    <h5>
+                                                        {format(new Date(objData.dt_txt), "dd MMMM HH:mm", {
                                                             locale: it,
                                                         })}
                                                     </h5>
