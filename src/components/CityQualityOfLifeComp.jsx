@@ -21,12 +21,19 @@ const CityQualityOfLifeComp = () => {
     const [matriceDiParoleTradotte, setMatriceDiParoleTradotte] = useState(null);
     console.log("matriceDiParoleTradotte", matriceDiParoleTradotte);
 
-    useEffect(() => {
-        if (param.cityName) {
-            fetchMoreCityInfos(param.cityName);
-            fetchToGetImage(param.cityName);
-        }
-    }, [param.cityName]);
+    useEffect(
+        (event) => {
+            if (param.cityName) {
+                if (event.key === "Enter") {
+                    fetchMoreCityInfos(param.cityName);
+                    fetchToGetImage(param.cityName);
+                }
+                fetchMoreCityInfos(param.cityName);
+                fetchToGetImage(param.cityName);
+            }
+        },
+        [param.cityName]
+    );
 
     useEffect(() => {
         if (cityQualityInfo) {
