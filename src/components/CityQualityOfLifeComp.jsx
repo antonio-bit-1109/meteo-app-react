@@ -21,19 +21,16 @@ const CityQualityOfLifeComp = () => {
     const [matriceDiParoleTradotte, setMatriceDiParoleTradotte] = useState(null);
     console.log("matriceDiParoleTradotte", matriceDiParoleTradotte);
 
-    useEffect(
-        (event) => {
-            if (param.cityName) {
-                if (event.key === "Enter") {
+    useEffect(() => {
+        if (param.cityName) {
+            /* if (event.key === "Enter") {
                     fetchMoreCityInfos(param.cityName);
                     fetchToGetImage(param.cityName);
-                }
-                fetchMoreCityInfos(param.cityName);
-                fetchToGetImage(param.cityName);
-            }
-        },
-        [param.cityName]
-    );
+                } */
+            fetchMoreCityInfos(param.cityName);
+            fetchToGetImage(param.cityName);
+        }
+    }, [param.cityName]);
 
     useEffect(() => {
         if (cityQualityInfo) {
@@ -59,7 +56,18 @@ const CityQualityOfLifeComp = () => {
             headers: {},
         };
 
-        fetch(`https://api.teleport.org/api/urban_areas/slug:${value}/images/`, options)
+        const optionsPexels = {
+            method: "GET",
+            headers: {
+                Authorization: "7Ye7PHnNDdVmd43T5cthTwaF0I2AipmjtizxjFtVcXnzQIgCqJYlTLXP",
+                "Content-type": "application/json",
+            },
+        };
+
+        const urlUrban_Area = `https://api.teleport.org/api/urban_areas/slug:${value}/images/`;
+        const urlPexels = `https://api.pexels.com/v1/search?query=${value}`;
+
+        fetch(urlPexels, optionsPexels)
             .then((fetchResponse) => {
                 console.log(fetchResponse);
                 if (!fetchResponse.ok) {
@@ -79,7 +87,7 @@ const CityQualityOfLifeComp = () => {
             })
             .then((imagesData) => {
                 console.log("IMMAGINE", imagesData);
-                setImageCity(imagesData.photos[0].image.mobile);
+                setImageCity(imagesData.photos[2].src.landscape);
             });
     };
 

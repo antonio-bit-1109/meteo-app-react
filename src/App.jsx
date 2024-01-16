@@ -7,12 +7,16 @@ import MainPage from "./components/MainPage";
 import DetailsSIngleCity from "./components/DetailsSIngleCity";
 import NotFoundComponent from "./components/NotFoundComponent";
 import CityQualityOfLifeComp from "./components/CityQualityOfLifeComp";
+import { useSelector, useDispatch } from "react-redux";
+import { setCityname } from "./redux/reducers/storeReducer";
 
 const App = () => {
-    const [cityname, setCityname] = useState("");
+    /* const [cityname, setCityname] = useState(""); */
+    const dispatch = useDispatch();
+    const cityname = useSelector((state) => state.queryState.cityname);
 
     const handleInputValue = (event) => {
-        setCityname(event.target.value);
+        dispatch(setCityname(event.target.value));
     };
 
     return (
@@ -43,7 +47,7 @@ const App = () => {
                         element={
                             <>
                                 <MyNavBarComponent />
-                                <CityQualityOfLifeComp />
+                                {/*  <CityQualityOfLifeComp /> */}
                             </>
                         }
                     />

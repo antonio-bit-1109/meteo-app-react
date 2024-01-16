@@ -121,9 +121,22 @@ const DetailsSIngleCity = (props) => {
         const options = {
             method: "GET",
             headers: {},
+            /* mode: "cors", */
         };
 
-        fetch(`https://api.teleport.org/api/urban_areas/slug:${value}/images/`, options)
+        /* problema con API URBAN AREA --> NO Access to fetch at 'https://api.teleport.org/api/urban_areas/slug:rome/images/' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled. */
+        const optionsPexels = {
+            method: "GET",
+            headers: {
+                Authorization: "7Ye7PHnNDdVmd43T5cthTwaF0I2AipmjtizxjFtVcXnzQIgCqJYlTLXP",
+                "Content-type": "application/json",
+            },
+        };
+
+        const urlUrban_Area = `https://api.teleport.org/api/urban_areas/slug:${value}/images/`;
+        const urlPexels = `https://api.pexels.com/v1/search?query=${value}`;
+
+        fetch(urlPexels, optionsPexels)
             .then((fetchResponse) => {
                 console.log(fetchResponse);
                 if (!fetchResponse.ok) {
@@ -143,7 +156,9 @@ const DetailsSIngleCity = (props) => {
             })
             .then((imagesData) => {
                 console.log("IMMAGINE", imagesData);
-                setImageCity(imagesData.photos[0].image.mobile);
+                /* usando urban_area problema CORS  */
+                /* setImageCity(imagesData.photos[0].image.mobile); */
+                setImageCity(imagesData.photos[2].src.large2x);
             });
     };
 
@@ -168,9 +183,10 @@ const DetailsSIngleCity = (props) => {
                                             handleSubmit={handleSubmit}
                                         />
                                     </div>
-                                </Col>
-                                <Col sm={12} md={10} lg={4}>
-                                    {/* bottone  */}
+                                </Col>{" "}
+                                {/* bottone  */}
+                                {/*  <Col sm={12} md={10} lg={4}>
+                                  
                                     <div className="d-flex justify-content-center justify-content-lg-end">
                                         {" "}
                                         <Link to={`/moreInfosCity/${inputString || cityname}`}>
@@ -180,7 +196,7 @@ const DetailsSIngleCity = (props) => {
                                             </Button>
                                         </Link>
                                     </div>
-                                </Col>
+                                </Col> */}
                             </Row>
 
                             <Row className="m-auto">
