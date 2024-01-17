@@ -119,7 +119,7 @@ const CityQualityOfLifeComp = () => {
                                         <Link to={`/DettagliCitta/${param.cityName}`}>
                                             <div className="d-flex align-items-center">
                                                 {" "}
-                                                <ArrowLeft className="display-3 text-black position-absolute  top-0 start-0" />{" "}
+                                                <ArrowLeft className="display-3 text-black position-absolute  top-0 start-0 mt-4" />{" "}
                                             </div>
                                         </Link>
                                         <div className="display-2 ms-auto">LOCALITÀ NELLE VICINANZE </div>
@@ -129,15 +129,26 @@ const CityQualityOfLifeComp = () => {
                         </Row>
                         <Row>
                             {infoAggiuntiveCity.data.slice(0, 3).map((localita) => (
-                                <Col key={localita.id}>
+                                <Col xxl={12} key={localita.id}>
                                     {" "}
-                                    {/* Aggiungi un key univoco per ogni elemento */}
-                                    <div>
-                                        <h3>{localita.name}</h3>
-                                        <h4>{localita.countryCode}</h4>
-                                        <h4>{localita.country}</h4>
-                                        <h4>{localita.region}</h4>
+                                    <div className="d-flex justify-content-evenly">
+                                        <div className="d-flex flex-column justify-content-center">
+                                            <h3>{localita.name}</h3>
+                                            <h4>{localita.countryCode}</h4>
+                                            <h4>{localita.country}</h4>
+                                            <h4>{localita.region}</h4>
+                                        </div>
+                                        <div>
+                                            <h3>Latitudine: {localita.latitude}</h3>
+                                            <h4>Longitudine: {localita.longitude}</h4>
+                                            <h4>Popolazione: {localita.population.toLocaleString()} abitanti </h4>
+                                            <h4>
+                                                {" "}
+                                                Distanza da {param.cityName}: {localita.distance} Km
+                                            </h4>
+                                        </div>
                                     </div>
+                                    <hr className="bg-black" />
                                 </Col>
                             ))}
                         </Row>
