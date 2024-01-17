@@ -63,7 +63,9 @@ const CityQualityOfLifeComp = () => {
     const fetchToGetLocationInfos = (lat, long) => {
         const apiKey = "d6e9cb0a6amsh24090e1f23b56e4p1220d1jsne74a23bfe846";
         const apiHost = "wft-geo-db.p.rapidapi.com";
-        const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/adminDivisions?location=%2B${lat}%2B${long}`;
+        const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/adminDivisions?location=${
+            lat >= 0 ? "%2B".concat(lat) : lat
+        }${long >= 0 ? "%2B".concat(long) : long}`;
 
         const options = {
             method: "GET",

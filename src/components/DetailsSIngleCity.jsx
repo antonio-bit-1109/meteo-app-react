@@ -189,7 +189,7 @@ const DetailsSIngleCity = (props) => {
                                 <Col sm={12} md={10} lg={4}>
                                     <div className="d-flex justify-content-center justify-content-lg-end">
                                         {" "}
-                                        {/*  <Link
+                                        <Link
                                             to={`/moreInfosCity/${inputString || cityname}/${
                                                 datiMeteoCitta.city.coord.lat
                                             }/${datiMeteoCitta.city.coord.lon}/${datiMeteoCitta.city.country}`}
@@ -198,7 +198,7 @@ const DetailsSIngleCity = (props) => {
                                             <Button className="text-black border background-style" variant="info">
                                                 Maggiori info sulla città
                                             </Button>
-                                        </Link> */}
+                                        </Link>
                                     </div>
                                 </Col>
                             </Row>
