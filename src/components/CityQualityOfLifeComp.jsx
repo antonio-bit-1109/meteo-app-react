@@ -17,17 +17,14 @@ const CityQualityOfLifeComp = () => {
 
     useEffect(
         (event) => {
-            if (event.key === "Enter") {
-                if (param) {
+            if (param) {
+                /* if (event.key === "Enter") {
                     fetchToGetImage(param.cityName);
                     const encodedLat = encodeURIComponent(param.lat);
                     const encodedlong = encodeURIComponent(param.lon);
                     console.log(encodedLat, encodedlong);
                     fetchToGetLocationInfos(encodedLat, encodedlong);
-                }
-            }
-
-            if (param) {
+                } else */
                 fetchToGetImage(param.cityName);
                 const encodedLat = encodeURIComponent(param.lat);
                 const encodedlong = encodeURIComponent(param.lon);
@@ -146,13 +143,13 @@ const CityQualityOfLifeComp = () => {
                                     {" "}
                                     <div className="d-flex justify-content-evenly">
                                         <div className="d-flex flex-column justify-content-center">
-                                            <h3>{localita.name}</h3>
-                                            <h4>{localita.countryCode}</h4>
+                                            <h2>{localita.name}</h2>
+                                            <h3>{localita.region}</h3>
                                             <h4>{localita.country}</h4>
-                                            <h4>{localita.region}</h4>
+                                            <h4>{localita.countryCode}</h4>
                                         </div>
-                                        <div>
-                                            <h3>Latitudine: {localita.latitude}</h3>
+                                        <div className="mt-3">
+                                            <h4>Latitudine: {localita.latitude}</h4>
                                             <h4>Longitudine: {localita.longitude}</h4>
                                             <h4>Popolazione: {localita.population.toLocaleString()} abitanti </h4>
                                             <h4>
