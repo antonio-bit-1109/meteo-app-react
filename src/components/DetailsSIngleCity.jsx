@@ -11,11 +11,12 @@ const DetailsSIngleCity = (props) => {
     console.log("param", param.IdData);
 
     const { cityname } = props;
-    console.log("DATI METEO CITTA", cityname);
+    console.log("NOME CITTA", cityname);
 
     const [lat, setLat] = useState(null);
     const [lon, setLon] = useState(null);
     const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
+    console.log("DATIMETOCITTAVOGLIOPARAMETRI", datiMeteoCitta);
     const [imageCity, setImageCity] = useState(null);
     console.log("PNG CITTA", imageCity);
 
@@ -185,18 +186,21 @@ const DetailsSIngleCity = (props) => {
                                     </div>
                                 </Col>{" "}
                                 {/* bottone  */}
-                                {/*  <Col sm={12} md={10} lg={4}>
-                                  
+                                <Col sm={12} md={10} lg={4}>
                                     <div className="d-flex justify-content-center justify-content-lg-end">
                                         {" "}
-                                        <Link to={`/moreInfosCity/${inputString || cityname}`}>
+                                        {/*  <Link
+                                            to={`/moreInfosCity/${inputString || cityname}/${
+                                                datiMeteoCitta.city.coord.lat
+                                            }/${datiMeteoCitta.city.coord.lon}/${datiMeteoCitta.city.country}`}
+                                        >
                                             {" "}
                                             <Button className="text-black border background-style" variant="info">
                                                 Maggiori info sulla città
                                             </Button>
-                                        </Link>
+                                        </Link> */}
                                     </div>
-                                </Col> */}
+                                </Col>
                             </Row>
 
                             <Row className="m-auto">

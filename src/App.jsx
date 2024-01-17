@@ -43,11 +43,11 @@ const App = () => {
                         }
                     />
                     <Route
-                        path="/moreInfosCity/:cityName"
+                        path="/moreInfosCity/:cityName/:lat/:lon/:country"
                         element={
                             <>
                                 <MyNavBarComponent />
-                                {/*  <CityQualityOfLifeComp /> */}
+                                <CityQualityOfLifeComp />
                             </>
                         }
                     />
