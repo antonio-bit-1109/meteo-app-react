@@ -15,15 +15,28 @@ const CityQualityOfLifeComp = () => {
     const [infoAggiuntiveCity, setInfoAggiuntiveCity] = useState(null);
     console.log("infoAggiuntiveCity", infoAggiuntiveCity);
 
-    useEffect(() => {
-        if (param) {
-            fetchToGetImage(param.cityName);
-            const encodedLat = encodeURIComponent(param.lat);
-            const encodedlong = encodeURIComponent(param.lon);
-            console.log(encodedLat, encodedlong);
-            fetchToGetLocationInfos(encodedLat, encodedlong);
-        }
-    }, [param]);
+    useEffect(
+        (event) => {
+            if (event.key === "Enter") {
+                if (param) {
+                    fetchToGetImage(param.cityName);
+                    const encodedLat = encodeURIComponent(param.lat);
+                    const encodedlong = encodeURIComponent(param.lon);
+                    console.log(encodedLat, encodedlong);
+                    fetchToGetLocationInfos(encodedLat, encodedlong);
+                }
+            }
+
+            if (param) {
+                fetchToGetImage(param.cityName);
+                const encodedLat = encodeURIComponent(param.lat);
+                const encodedlong = encodeURIComponent(param.lon);
+                console.log(encodedLat, encodedlong);
+                fetchToGetLocationInfos(encodedLat, encodedlong);
+            }
+        },
+        [param]
+    );
 
     const fetchToGetImage = (value) => {
         const optionsPexels = {
