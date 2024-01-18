@@ -5,17 +5,24 @@ import { format } from "date-fns";
 import InputComponent from "./InputComponent";
 import { it } from "date-fns/locale";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setLat, setLon, setDatiMeteoCitta } from "../redux/reducers/storeReducer";
 
 const DetailsSIngleCity = (props) => {
+    const dispatch = useDispatch();
     const param = useParams();
     console.log("param", param.IdData);
 
     const { cityname } = props;
     console.log("NOME CITTA", cityname);
 
-    const [lat, setLat] = useState(null);
-    const [lon, setLon] = useState(null);
-    const [datiMeteoCitta, setDatiMeteoCitta] = useState(null);
+    const lat = useSelector((state) => state.queryState.lat);
+    const lon = useSelector((state) => state.queryState.lon);
+    /* const [lat, setLat] = useState(null); */
+    /* const [lon, setLon] = useState(null); */
+
+    /* const [datiMeteoCitta, setDatiMeteoCitta] = useState(null); */
+    const datiMeteoCitta = useSelector((state) => state.queryState.datiMeteoCitta);
     console.log("DATIMETOCITTAVOGLIOPARAMETRI", datiMeteoCitta);
     const [imageCity, setImageCity] = useState(null);
     console.log("PNG CITTA", imageCity);
@@ -76,8 +83,10 @@ const DetailsSIngleCity = (props) => {
 
             .then((data) => {
                 console.log(data);
-                setLat(data[0].lat);
-                setLon(data[0].lon); /* prendo i valori di lat e lon */
+                /*   setLat(data[0].lat); */
+                /*   setLon(data[0].lon); */
+                dispatch(setLat(data[0].lat));
+                dispatch(setLon(data[0].lon)); /* prendo i valori di lat e lon */
             })
 
             .catch((err) => console.error(err));
@@ -113,7 +122,7 @@ const DetailsSIngleCity = (props) => {
             })
             .then((meteoCityDatas) => {
                 console.log(meteoCityDatas);
-                setDatiMeteoCitta(meteoCityDatas);
+                dispatch(setDatiMeteoCitta(meteoCityDatas));
             })
             .catch((err) => console.error(err));
     };
