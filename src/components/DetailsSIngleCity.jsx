@@ -24,6 +24,7 @@ const DetailsSIngleCity = (props) => {
     /* const [datiMeteoCitta, setDatiMeteoCitta] = useState(null); */
     const datiMeteoCitta = useSelector((state) => state.queryState.datiMeteoCitta);
     console.log("DATIMETOCITTAVOGLIOPARAMETRI", datiMeteoCitta);
+
     const [imageCity, setImageCity] = useState(null);
     console.log("PNG CITTA", imageCity);
 
